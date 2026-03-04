@@ -6,6 +6,7 @@ import SocialPlatformCarousel from '../components/services/SocialPlatformCarouse
 import ServiceContact from '../components/services/ServiceContact';
 
 const ServiceSocial = () => {
+  // Memastikan halaman otomatis scroll ke paling atas saat baru dibuka
   useEffect(() => window.scrollTo(0, 0), []);
 
   const offers = [
