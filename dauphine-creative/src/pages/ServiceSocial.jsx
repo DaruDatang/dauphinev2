@@ -21,12 +21,12 @@ const ServiceSocial = () => {
     },
     { 
       title: "Product Photography", 
-      desc: "Pengambilan foto produk berkualitas tinggi dengan art direction yang sesuai dengan identitas estetika brand Anda.", 
+      desc: "Pengambilan foto produk berkualitas tinggi dengan art direction yang sesuai dengan identitas dan estetika brand Anda.", 
       icon: <FiCamera /> 
     },
     { 
       title: "Social Media Specialist", 
-      desc: "Manajemen akun menyeluruh, interaksi audiens, dan analisis data performa untuk pertumbuhan berkelanjutan.", 
+      desc: "Manajemen akun secara menyeluruh, interaksi dengan audiens, dan analisis data performa untuk pertumbuhan yang berkelanjutan.", 
       icon: <FiUsers /> 
     },
   ];
@@ -62,27 +62,30 @@ const ServiceSocial = () => {
     <div className="bg-light min-h-screen">
       <SEO 
         title="Social Media Management & Strategy" 
-        description="Tingkatkan brand awareness dan engagement dengan layanan Social Media Management dari Dauphine Creative." 
+        description="Membangun ekosistem digital yang hidup dan komunitas yang setia melalui konten kreatif yang relevan serta strategi data yang presisi." 
       />
 
-      {/* Hero Banner Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden px-6 md:px-12 border-b-4 border-dark">
+      {/* Hero Banner Section - Layout Identik dengan Homepage */}
+      <section className="relative min-h-[80vh] flex items-center justify-center pt-20 overflow-hidden px-6 md:px-12 border-b-4 border-dark">
+        {/* Background Layer */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2074&auto=format&fit=crop"
-            alt="Social Media Background"
+            alt="Social Media Management Background"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-[#F1FAEE]/90 backdrop-blur-[2px]" />
         </div>
-        <div className="container mx-auto relative z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+
+        {/* Content Layer */}
+        <div className="container mx-auto relative z-10 text-center md:text-left">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h4 className="text-primary font-bold mb-2 tracking-widest uppercase text-sm">What We Do</h4>
             <h1 className="text-5xl md:text-7xl font-black text-secondary mb-8 leading-tight">
               Social Media <span className="text-accent underline decoration-wavy">Management</span>
             </h1>
-            <p className="text-xl text-dark/80 font-medium max-w-3xl leading-relaxed">
-              Mendorong pertumbuhan organik dan engagement yang bermakna melalui eksekusi kreatif yang berani, didukung oleh analisis data tajam untuk memastikan setiap interaksi menjadi langkah menuju loyalitas pelanggan.
+            <p className="text-xl md:text-2xl text-dark/80 font-medium max-w-4xl leading-relaxed">
+              Membangun ekosistem digital yang hidup dan komunitas yang setia melalui konten kreatif yang relevan serta strategi data yang presisi untuk memastikan brand Anda tetap unggul di tengah persaingan media sosial yang dinamis.
             </p>
           </motion.div>
         </div>
@@ -105,18 +108,17 @@ const ServiceSocial = () => {
       {/* Social Platform Carousel Section */}
       <SocialPlatformCarousel />
 
-      {/* NEW SECTION: Why Dauphine Creative */}
+      {/* Why Dauphine Creative Section */}
       <section className="container mx-auto px-6 md:px-12 py-20">
         <div className="text-center mb-12">
           <h3 className="text-4xl md:text-5xl font-black text-secondary mb-4">
             Why <span className="text-primary">Dauphine Creative?</span>
           </h3>
-          <p className="text-dark/70 font-medium max-w-2xl mx-auto">
-            Kami tidak hanya mengelola media sosial, kami merawat dan membesarkan citra digital Anda.
+          <p className="text-dark/70 font-medium max-w-2xl mx-auto text-lg">
+            Kami tidak hanya mengelola media sosial, kami merawat dan membesarkan citra digital Anda melalui pendekatan yang personal dan profesional.
           </p>
         </div>
         
-        {/* Grid 3 Kolom seperti desain Techbar */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map((reason, idx) => (
             <div key={idx} className="comic-box p-8 bg-white hover:-translate-y-2 transition-transform h-full flex flex-col items-start text-left">

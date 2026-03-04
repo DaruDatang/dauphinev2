@@ -6,6 +6,7 @@ import TechStackCarousel from '../components/services/TechStackCarousel';
 import ServiceContact from '../components/services/ServiceContact';
 
 const ServiceIT = () => {
+  // Memastikan halaman otomatis scroll ke paling atas saat baru dibuka
   useEffect(() => window.scrollTo(0, 0), []);
 
   const offers = [
@@ -16,12 +17,11 @@ const ServiceIT = () => {
     },
     { 
       title: "Otomasi Proses Bisnis", 
-      desc: "Mengubah proses manual menjadi otomatis dengan sistem ERP, CRM, atau custom software untuk efisiensi biaya.", 
+      desc: "Mengubah proses manual menjadi otomatis dengan sistem ERP, CRM, atau custom software untuk meningkatkan efisiensi waktu dan biaya.", 
       icon: <FiCpu /> 
     }
   ];
 
-  // Data khusus untuk Section "Why Dauphine Creative"
   const reasons = [
     {
       title: "Kecepatan Tanpa Pintasan",
@@ -53,11 +53,12 @@ const ServiceIT = () => {
     <div className="bg-light min-h-screen">
       <SEO 
         title="IT Solution & Software Development" 
-        description="Layanan IT Solution dari Dauphine Creative. Kami merancang website modern dan sistem otomasi proses bisnis." 
+        description="Membangun fondasi infrastruktur digital yang tangguh dan future-proof untuk mengakselerasi efisiensi operasional bisnis Anda." 
       />
 
-      {/* Hero Banner Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden px-6 md:px-12 border-b-4 border-dark">
+      {/* Hero Banner Section - Layout Identik dengan Homepage */}
+      <section className="relative min-h-[80vh] flex items-center justify-center pt-20 overflow-hidden px-6 md:px-12 border-b-4 border-dark">
+        {/* Background Layer */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"
@@ -66,14 +67,16 @@ const ServiceIT = () => {
           />
           <div className="absolute inset-0 bg-[#F1FAEE]/90 backdrop-blur-[2px]" />
         </div>
-        <div className="container mx-auto relative z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+
+        {/* Content Layer */}
+        <div className="container mx-auto relative z-10 text-center md:text-left">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h4 className="text-accent font-bold mb-2 tracking-widest uppercase text-sm">What We Do</h4>
             <h1 className="text-5xl md:text-7xl font-black text-secondary mb-8 leading-tight">
               IT <span className="text-primary underline decoration-wavy">Solution</span>
             </h1>
-            <p className="text-xl text-dark/80 font-medium max-w-3xl leading-relaxed">
-              Membangun fondasi infrastruktur digital yang tangguh dan future-proof untuk mengakselerasi efisiensi operasional serta memastikan bisnis Anda siap menghadapi skala pertumbuhan yang lebih besar..
+            <p className="text-xl md:text-2xl text-dark/80 font-medium max-w-4xl leading-relaxed">
+              Membangun fondasi infrastruktur digital yang tangguh dan future-proof untuk mengakselerasi efisiensi operasional serta memastikan bisnis Anda siap menghadapi skala pertumbuhan yang lebih besar.
             </p>
           </motion.div>
         </div>
@@ -98,18 +101,17 @@ const ServiceIT = () => {
       {/* Tech Stack Carousel Section */}
       <TechStackCarousel />
       
-      {/* NEW SECTION: Why Dauphine Creative */}
+      {/* Why Dauphine Creative Section */}
       <section className="container mx-auto px-6 md:px-12 py-20">
         <div className="text-center mb-12">
           <h3 className="text-4xl md:text-5xl font-black text-secondary mb-4">
             Why <span className="text-accent">Dauphine Creative?</span>
           </h3>
-          <p className="text-dark/70 font-medium max-w-2xl mx-auto">
-            Dibangun untuk performa, dirancang untuk masa depan. Kami lebih dari sekadar vendor *coding*.
+          <p className="text-dark/70 font-medium max-w-2xl mx-auto text-lg">
+            Dibangun untuk performa, dirancang untuk masa depan. Kami lebih dari sekadar vendor pengembangan kode—kami adalah partner strategis digital Anda.
           </p>
         </div>
         
-        {/* Grid 3 Kolom seperti desain Techbar */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map((reason, idx) => (
             <div key={idx} className="comic-box p-8 bg-white hover:-translate-y-2 transition-transform h-full flex flex-col items-start text-left">
