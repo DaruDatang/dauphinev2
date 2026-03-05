@@ -54,7 +54,6 @@ const Portfolio = () => {
               transition={{ duration: 0.4 }}
               className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
             >
-              {/* Kiri: Gambar */}
               <div className="comic-box overflow-hidden p-0 bg-white aspect-video md:aspect-square lg:aspect-video flex items-center justify-center">
                 <img 
                     src={projects[currentIndex].image} 
@@ -62,8 +61,6 @@ const Portfolio = () => {
                     className="w-full h-full object-cover" 
                 />
               </div>
-
-              {/* Kanan: Detail Project */}
               <div>
                 <p className="text-dark/60 font-bold mb-2 uppercase tracking-widest text-sm">{projects[currentIndex].category}</p>
                 <h3 className="text-4xl font-black text-secondary mb-4 leading-tight">{projects[currentIndex].title}</h3>

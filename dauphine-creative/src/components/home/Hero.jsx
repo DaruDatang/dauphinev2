@@ -10,16 +10,12 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden px-6">
-      
-      {/* 1. BACKGROUND IMAGE LAYER */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" // GANTI URL INI DENGAN FOTO ANDA
+          src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
           alt="Hero Background"
           className="w-full h-full object-cover"
         />
-        {/* 2. OVERLAY LAYER (Agar teks tetap terbaca tajam) */}
-        {/* Kita gunakan warna 'light' (#F1FAEE) dengan opacity 90% */}
         <div className="absolute inset-0 bg-[#F1FAEE]/65 backdrop-blur-[2px]" />
       </div>
 
