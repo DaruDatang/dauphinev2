@@ -20,7 +20,7 @@ const Hero = () => {
         />
         {/* 2. OVERLAY LAYER (Agar teks tetap terbaca tajam) */}
         {/* Kita gunakan warna 'light' (#F1FAEE) dengan opacity 90% */}
-        <div className="absolute inset-0 bg-[#F1FAEE]/90 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-[#F1FAEE]/65 backdrop-blur-[2px]" />
       </div>
 
       <div className="container mx-auto text-center z-10">

@@ -6,6 +6,7 @@ import ClientCarousel from '../components/home/ClientCarousel';
 import FAQ from '../components/home/FAQ';
 import Portfolio from '../components/home/Portfolio';
 import Contact from '../components/home/Contact';
+import Milestone from '../components/home/Milestone';
 
 const Home = () => {
   return (
@@ -14,13 +15,11 @@ const Home = () => {
         title="Software Product Development & Creative Agency" 
         description="Dauphine Creative membantu mengubah ide menjadi produk digital yang andal." 
       />
-      
       <Hero />
       <About />
       <ServicesList />
-      
       <ClientCarousel /> 
-      
+      <Milestone />
       <FAQ />
       <Portfolio />
       <Contact />

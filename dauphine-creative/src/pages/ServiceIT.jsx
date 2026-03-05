@@ -56,16 +56,17 @@ const ServiceIT = () => {
         description="Membangun fondasi infrastruktur digital yang tangguh dan future-proof untuk mengakselerasi efisiensi operasional bisnis Anda." 
       />
 
-      {/* Hero Banner Section - Layout Identik dengan Homepage */}
+      {/* Hero Banner Section - Optimized for Quality & Speed */}
       <section className="relative min-h-[80vh] flex items-center justify-center pt-20 overflow-hidden px-6 md:px-12 border-b-4 border-dark">
         {/* Background Layer */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"
-            alt="IT Solution Background"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1920"
+            alt="IT Solution Team Meeting"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#F1FAEE]/90 backdrop-blur-[2px]" />
+          {/* Overlay - Optimized contrast */}
+          <div className="absolute inset-0 bg-[#F1FAEE]/65 backdrop-blur-[1px]" />
         </div>
 
         {/* Content Layer */}
@@ -116,7 +117,7 @@ const ServiceIT = () => {
           {reasons.map((reason, idx) => (
             <div key={idx} className="comic-box p-8 bg-white hover:-translate-y-2 transition-transform h-full flex flex-col items-start text-left">
               <h4 className="text-2xl font-black text-dark mb-3 leading-tight">{reason.title}</h4>
-              <p className="text-dark/80 font-medium leading-relaxed">
+              <p className="text-dark/80 font-medium leading-relaxed flex-1">
                 {reason.desc}
               </p>
             </div>

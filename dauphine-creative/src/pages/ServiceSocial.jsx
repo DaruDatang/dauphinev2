@@ -6,7 +6,6 @@ import SocialPlatformCarousel from '../components/services/SocialPlatformCarouse
 import ServiceContact from '../components/services/ServiceContact';
 
 const ServiceSocial = () => {
-  // Memastikan halaman otomatis scroll ke paling atas saat baru dibuka
   useEffect(() => window.scrollTo(0, 0), []);
 
   const offers = [
@@ -66,16 +65,17 @@ const ServiceSocial = () => {
         description="Membangun ekosistem digital yang hidup dan komunitas yang setia melalui konten kreatif yang relevan serta strategi data yang presisi." 
       />
 
-      {/* Hero Banner Section - Layout Identik dengan Homepage */}
+      {/* Hero Banner Section - Updated Photo & Reduced Opacity */}
       <section className="relative min-h-[80vh] flex items-center justify-center pt-20 overflow-hidden px-6 md:px-12 border-b-4 border-dark">
         {/* Background Layer */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2074&auto=format&fit=crop"
-            alt="Social Media Management Background"
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1920"
+            alt="Team Meeting Social Media Strategy"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#F1FAEE]/90 backdrop-blur-[2px]" />
+          {/* Overlay - Reduced opacity to 75% for better image visibility */}
+          <div className="absolute inset-0 bg-[#F1FAEE]/65 backdrop-blur-[1px]" />
         </div>
 
         {/* Content Layer */}
@@ -124,7 +124,7 @@ const ServiceSocial = () => {
           {reasons.map((reason, idx) => (
             <div key={idx} className="comic-box p-8 bg-white hover:-translate-y-2 transition-transform h-full flex flex-col items-start text-left">
               <h4 className="text-2xl font-black text-dark mb-3 leading-tight">{reason.title}</h4>
-              <p className="text-dark/80 font-medium leading-relaxed">
+              <p className="text-dark/80 font-medium leading-relaxed flex-1">
                 {reason.desc}
               </p>
             </div>
