@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiPlus, FiMinus } from 'react-icons/fi';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -9,7 +8,7 @@ const FAQ = () => {
     { question: "Bagaimana proses kerjanya?", answer: "Kami mulai dengan diskusi kebutuhan, perancangan konsep, pengembangan (development), hingga tahap peluncuran dan evaluasi." },
     { question: "Apakah tim yang mengerjakan cukup berpengalaman?", answer: "Tentu! Tim kami terdiri dari ahli di bidang IT Solution dan Social Media yang sudah terbiasa menangani berbagai skala project." },
     { question: "Apakah butuh banyak dokumen (paperwork)?", answer: "Kami mengutamakan efisiensi. Dokumen yang diperlukan hanyalah proposal persetujuan, kontrak kerja sederhana, dan brief project." },
-    { question: "Berapa rate/harga layanannya?", answer: "Harga sangat fleksibel dan disesuaikan dengan skala serta kompleksitas project Anda. Mari diskusikan kebutuhan Anda untuk mendapatkan penawaran terbaik." }
+    { question: "Berapa rate/harga layanannya?", answer: "Harga sangat fleksibel dan disesuaikan dengan skala serta kompleksitas project Anda. Mari diskusikan untuk penawaran terbaik." }
   ];
 
   const toggleFAQ = (index) => {
@@ -17,89 +16,80 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-24 bg-white border-b-4 border-dark">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+    <section id="faq" className="py-32 bg-[#ffffff] border-t border-dark/10">
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-5xl md:text-6xl font-black text-secondary leading-tight mb-6">
-              Bekerja sama dengan kami <span className="text-primary">sangat mudah.</span>
-            </h2>
-            <p className="text-dark/70 font-medium mb-8">
-              Tidak menemukan apa yang Anda cari? Mari kita diskusikan.
-            </p>
-            <button 
-              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-              style={{ color: '#111111', backgroundColor: '#457B9D' }}
-              className="comic-box py-3 px-8 font-bold text-lg"
-            >
-              Contact Us
-            </button>
-          </motion.div>
+          <div className="hidden md:block">
+            <span className="text-sm font-medium text-dark/40 uppercase tracking-tighter">
+              Inquiry / FAQ
+            </span>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-4"
-          >
-            {faqs.map((faq, index) => (
-              <div key={index} className="comic-box overflow-hidden bg-light !text-dark">
-                <button 
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full text-left px-6 py-5 flex justify-between items-center font-bold text-lg text-secondary hover:text-primary transition-colors focus:outline-none"
-                >
-                  <span className="pr-4">{faq.question}</span>
-                  <motion.span 
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="text-2xl text-dark shrink-0"
+          <div className="md:col-start-2 md:col-span-3">
+            <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight mb-16">
+              Bekerja sama dengan kami <br />
+              <span className="text-dark/40">sangat mudah.</span>
+            </h2>
+
+            <div className="flex flex-col">
+              {faqs.map((faq, index) => (
+                <div key={index} className="border-t border-dark/10 group">
+                  <button 
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full text-left py-8 flex justify-between items-center group-hover:bg-dark/[0.02] transition-all duration-300 px-4"
                   >
-                    {openIndex === index ? <FiMinus /> : <FiPlus />}
-                  </motion.span>
-                </button>
-                
-                <AnimatePresence initial={false}>
-                  {openIndex === index && (
-                    <motion.div
-                      key="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ 
-                        height: "auto", 
-                        opacity: 1,
-                        transition: {
-                          height: {
-                            type: "spring",
-                            stiffness: 100,
-                            damping: 15
-                          },
-                          opacity: { duration: 0.2 }
-                        }
-                      }}
-                      exit={{ 
-                        height: 0, 
-                        opacity: 0,
-                        transition: {
-                          height: { duration: 0.3 },
-                          opacity: { duration: 0.2 }
-                        }
-                      }}
+                    <span className="text-xl md:text-2xl font-medium text-dark tracking-tight">
+                      {faq.question}
+                    </span>
+                    <motion.span 
+                      animate={{ rotate: openIndex === index ? 45 : 0 }}
+                      className="text-3xl text-dark/30 group-hover:text-dark transition-colors"
                     >
-                      <div className="px-6 pb-5 text-dark/80 font-medium border-t-2 border-dark/10 pt-4">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </motion.div>
+                      +
+                    </motion.span>
+                  </button>
+                  
+                  <AnimatePresence initial={false}>
+                    {openIndex === index && (
+                      <motion.div
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ 
+                          height: "auto", 
+                          opacity: 1,
+                          transition: { height: { duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }, opacity: { duration: 0.3 } }
+                        }}
+                        exit={{ 
+                          height: 0, 
+                          opacity: 0,
+                          transition: { height: { duration: 0.3 }, opacity: { duration: 0.2 } }
+                        }}
+                      >
+                        <div className="px-4 pb-10 text-dark/60 text-lg max-w-2xl leading-relaxed">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+              {/* Garis Penutup Bawah */}
+              <div className="border-t border-dark/10"></div>
+            </div>
+
+            {/* CTA Button Minimalis */}
+            <div className="mt-16 px-4">
+              <button 
+                onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                className="text-sm font-bold uppercase tracking-widest border-b-2 border-dark pb-1 hover:text-primary hover:border-primary transition-all"
+              >
+                Still have questions? Contact Us →
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

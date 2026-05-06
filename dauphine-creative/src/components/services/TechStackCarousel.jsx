@@ -13,34 +13,50 @@ const TechStackCarousel = () => {
     { icon: <SiMysql />, name: "MySQL" },
   ];
 
-  // Menduplikasi array agar animasi infinite loop terlihat mulus
   const duplicatedTechs = [...techs, ...techs, ...techs];
 
   return (
-    <section className="py-20 bg-white border-y-4 border-dark overflow-hidden">
-      <div className="container mx-auto px-6 text-center mb-10">
-        <h3 className="text-3xl font-black text-secondary">Teknologi yang Kami Gunakan</h3>
-      </div>
-      
-      <div className="relative flex w-full">
-        {/* Efek gradient di kanan-kiri agar transisi halus */}
-        <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
-        <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
+    <section className="py-24 bg-[#ffffff] border-t border-dark/10 overflow-hidden">
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
+          
+          <div className="hidden md:block">
+            <h3 className="text-sm font-medium text-dark/40 uppercase tracking-tighter leading-tight">
+              Our Tech <br /> Stack
+            </h3>
+          </div>
 
-        <motion.div 
-          className="flex space-x-12 items-center"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 20, repeat: Infinity }}
-        >
-          {duplicatedTechs.map((tech, index) => (
-            <div key={index} className="flex flex-col items-center justify-center w-32 shrink-0">
-              <div className="text-6xl text-dark/70 hover:text-primary transition-colors mb-4">
-                {tech.icon}
-              </div>
-              <span className="font-bold text-dark/80">{tech.name}</span>
+          <div className="md:col-span-3 relative">
+            
+            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#ffffff] to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#ffffff] to-transparent z-10 pointer-events-none" />
+
+            <div className="flex items-center overflow-hidden py-4">
+              <motion.div 
+                className="flex space-x-16 md:space-x-24 items-center shrink-0"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ 
+                  ease: "linear", 
+                  duration: 30, 
+                  repeat: Infinity 
+                }}
+              >
+                {duplicatedTechs.map((tech, index) => (
+                  <div key={index} className="flex flex-col items-center justify-center w-24 shrink-0 group">
+                    <div className="text-5xl md:text-6xl text-dark/30 group-hover:text-dark transition-all duration-500 mb-4 group-hover:-translate-y-1">
+                      {tech.icon}
+                    </div>
+                    <span className="font-bold text-dark/20 group-hover:text-dark/80 text-[10px] md:text-xs uppercase tracking-widest transition-all duration-500">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-          ))}
-        </motion.div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

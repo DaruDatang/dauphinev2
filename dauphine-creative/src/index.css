@@ -32,7 +32,6 @@
     border-radius: 12px !important;
     background-color: #ffffff !important; 
     color: #111111 !important;            
-    /* Flex-col agar konten di dalamnya tersusun rapi ke bawah */
     display: flex;
     flex-direction: column;
     @apply transition-all duration-300 ease-in-out font-bold;

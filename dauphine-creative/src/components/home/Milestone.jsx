@@ -5,64 +5,64 @@ const Milestone = () => {
     { 
       number: "10+", 
       label: "Projects", 
-      desc: "Solusi digital kreatif yang telah kami luncurkan.",
-      borderColor: "border-accent" 
+      desc: "Solusi digital kreatif yang telah kami luncurkan." 
     },
     { 
       number: "10+", 
       label: "Clients", 
-      desc: "Kepercayaan dari berbagai mitra bisnis korporat.",
-      borderColor: "border-primary" 
+      desc: "Kepercayaan dari berbagai mitra bisnis korporat." 
     },
     { 
       number: "95%", 
       label: "Satisfaction Rate", 
-      desc: "Komitmen kami pada kualitas dan ketepatan waktu.",
-      borderColor: "border-secondary" 
+      desc: "Komitmen kami pada kualitas dan ketepatan waktu." 
     },
     { 
       number: "24/5", 
       label: "Dedicated Support", 
-      desc: "Layanan purna jual dan dukungan teknis siap sedia.",
-      borderColor: "border-dark"
+      desc: "Layanan purna jual dan dukungan teknis siap sedia."
     }
   ];
 
   return (
-    <section className="py-24 bg-light/50 border-b-4 border-dark m-0">
-      <div className="container mx-auto px-6">
-        {/* Judul Section */}
-        <div className="text-center mb-16">
-          <h3 className="text-3xl md:text-4xl font-black text-secondary leading-tight">
-            Pencapaian <span className="text-primary underline decoration-wavy">Kami</span>
-          </h3>
+    <section id="milestone" className="py-32 bg-[#ffffff] border-t border-dark/10">
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-24">
+          <div className="hidden md:block">
+            <span className="text-sm font-medium text-dark/40 uppercase tracking-tighter">
+              Acheivements
+            </span>
+          </div>
+          <div className="md:col-start-2 md:col-span-3">
+            <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight leading-tight">
+              Pencapaian <br /> 
+              <span className="text-dark/40">Kami Sejauh Ini.</span>
+            </h2>
+          </div>
         </div>
 
-        {/* Grid Card Milestone */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, idx) => (
             <motion.div 
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: idx * 0.15, duration: 0.5 }}
-              className={`comic-box bg-white p-8 hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col ${stat.borderColor}`}
+              transition={{ delay: idx * 0.1, duration: 0.8, ease: "easeOut" }}
+              className="py-12 border-t border-dark/10 h-full flex flex-col group hover:bg-dark/[0.02] transition-colors duration-500 rounded-sm px-4"
             >
-              {/* Angka Besar dengan Drop Shadow khas Neo-Brutalism */}
-              <h3 className="text-6xl font-black text-accent mb-3 drop-shadow-[2px_2px_0px_#111111]">
+              <h3 className="text-7xl font-medium text-dark tracking-tighter mb-4 group-hover:scale-105 transition-transform duration-500 tabular-nums">
                 {stat.number}
               </h3>
               
-              {/* Garis Pemisah */}
-              <div className="h-1.5 w-16 bg-secondary mb-5 border border-dark"></div>
+              <div className="h-px w-20 bg-dark/20 mb-6 group-hover:w-full transition-all duration-700"></div>
               
-              {/* Label & Deskripsi */}
-              <div className="flex-1 space-y-2">
-                <p className="text-lg font-black text-secondary uppercase tracking-wider leading-tight">
+              <div className="flex-1 space-y-3">
+                <p className="text-lg font-bold text-dark uppercase tracking-tight leading-tight">
                   {stat.label}
                 </p>
-                <p className="text-sm text-dark/70 font-medium leading-relaxed">
+                <p className="text-dark/60 text-sm font-medium leading-relaxed">
                   {stat.desc}
                 </p>
               </div>

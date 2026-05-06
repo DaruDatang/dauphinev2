@@ -1,38 +1,50 @@
 import { motion } from 'framer-motion';
+import logoDp from '../../assets/logo-dp.svg'; 
 
 const PageLoader = () => {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-light"
+      initial={{ opacity: 1 }}
+      exit={{ 
+        opacity: 0,
+        transition: { duration: 0.8, ease: "easeInOut" } 
+      }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#ffffff]"
     >
       <div className="flex flex-col items-center">
-        {/* Animasi Logo atau Simbol Scribble */}
+        
         <motion.div
-          animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, 5, -5, 0] 
-          }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ 
-            duration: 0.8, 
+            duration: 1.2,
             repeat: Infinity,
+            repeatType: "reverse",
             ease: "easeInOut" 
           }}
-          className="w-16 h-16 border-4 border-dark rounded-xl bg-primary shadow-comic flex items-center justify-center text-white font-black text-2xl"
+          className="relative"
         >
-          D
+          <img 
+            src={logoDp} 
+            alt="Dauphiné Creative"
+            className="w-28 h-28 md:w-36 md:h-36 object-contain grayscale opacity-80"
+          />
         </motion.div>
         
-        {/* Teks Loading bergaya Hand-drawn */}
-        <motion.p
-          animate={{ opacity: [0.3, 1, 0.3] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="mt-6 font-bold text-secondary tracking-widest uppercase text-sm"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 1 }}
+          className="mt-10 flex flex-col items-center gap-3"
         >
-          Creating Magic...
-        </motion.p>
+
+          <motion.span 
+            animate={{ width: ["0%", "100%", "0%"] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="h-[1px] bg-dark/20 w-16"
+          />
+        </motion.div>
+
       </div>
     </motion.div>
   );

@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { FaInstagram, FaTiktok, FaFacebook, FaLinkedin, FaYoutube, FaTwitter } from 'react-icons/fa';
 
 const SocialPlatformCarousel = () => {
-  // Data platform sosial media yang kita handle
   const platforms = [
     { name: "Instagram", icon: <FaInstagram /> },
     { name: "TikTok", icon: <FaTiktok /> },
@@ -12,59 +11,49 @@ const SocialPlatformCarousel = () => {
     { name: "Twitter / X", icon: <FaTwitter /> },
   ];
 
+  const duplicatedPlatforms = [...platforms, ...platforms, ...platforms];
+
   return (
-    <section className="py-16 bg-white border-y-4 border-dark overflow-hidden">
-      <div className="container mx-auto px-6 mb-12 text-center">
-        {/* Judul dibuat polos/clean (text-secondary) tanpa garis bawah bergelombang */}
-        <h3 className="text-3xl md:text-4xl font-black text-secondary uppercase tracking-tight">
-          What Can We Handle
-        </h3>
-      </div>
+    <section className="py-24 bg-[#ffffff] border-t border-dark/10 overflow-hidden">
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
+          <div className="hidden md:block">
+            <h3 className="text-sm font-medium text-dark/40 uppercase tracking-tighter leading-tight">
+              What Can <br /> We Handle
+            </h3>
+          </div>
 
-      {/* Wrapper Carousel */}
-      <div className="relative flex overflow-hidden group">
-        
-        {/* Efek Gradasi di Kiri & Kanan (Menyesuaikan warna background putih) */}
-        <div className="absolute top-0 bottom-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="md:col-span-3 relative">
+            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#ffffff] to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#ffffff] to-transparent z-10 pointer-events-none" />
 
-        {/* Baris Pertama Animasi */}
-        <motion.div
-          animate={{ x: ["0%", "-100%"] }}
-          transition={{ duration: 25, ease: "linear", repeat: Infinity }}
-          className="flex gap-16 md:gap-24 min-w-full shrink-0 items-center justify-around px-8"
-        >
-          {platforms.map((plat, idx) => (
-            <div key={`plat-1-${idx}`} className="flex flex-col items-center justify-center space-y-4 grayscale hover:grayscale-0 transition-all duration-300">
-              {/* Ikon menggunakan warna dark dengan opacity rendah (abu-abu) saat normal */}
-              <div className="text-6xl text-dark opacity-40 hover:opacity-100 transition-all cursor-pointer hover:-translate-y-2">
-                {plat.icon}
-              </div>
-              <span className="font-bold text-secondary text-sm md:text-base uppercase tracking-wider">
-                {plat.name}
-              </span>
+            <div className="flex items-center overflow-hidden py-4">
+              <motion.div
+                animate={{ x: ["0%", "-33.33%"] }}
+                transition={{ 
+                  duration: 25, 
+                  ease: "linear", 
+                  repeat: Infinity 
+                }}
+                className="flex flex-nowrap shrink-0 gap-16 md:gap-24 items-center"
+              >
+                {duplicatedPlatforms.map((plat, idx) => (
+                  <div 
+                    key={idx} 
+                    className="flex flex-col items-center justify-center gap-4 grayscale opacity-30 hover:opacity-100 hover:grayscale-0 transition-all duration-700 group cursor-pointer"
+                  >
+                    <div className="text-4xl md:text-5xl text-dark group-hover:-translate-y-1 transition-transform">
+                      {plat.icon}
+                    </div>
+                    <span className="font-bold text-dark text-[10px] md:text-xs uppercase tracking-widest whitespace-nowrap">
+                      {plat.name}
+                    </span>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-          ))}
-        </motion.div>
-
-        {/* Baris Kedua Animasi (Duplikat untuk Looping Sempurna) */}
-        <motion.div
-          animate={{ x: ["0%", "-100%"] }}
-          transition={{ duration: 25, ease: "linear", repeat: Infinity }}
-          className="flex gap-16 md:gap-24 min-w-full shrink-0 items-center justify-around px-8"
-        >
-          {platforms.map((plat, idx) => (
-            <div key={`plat-2-${idx}`} className="flex flex-col items-center justify-center space-y-4 grayscale hover:grayscale-0 transition-all duration-300">
-              <div className="text-6xl text-dark opacity-40 hover:opacity-100 transition-all cursor-pointer hover:-translate-y-2">
-                {plat.icon}
-              </div>
-              <span className="font-bold text-secondary text-sm md:text-base uppercase tracking-wider">
-                {plat.name}
-              </span>
-            </div>
-          ))}
-        </motion.div>
-        
+          </div>
+        </div>
       </div>
     </section>
   );

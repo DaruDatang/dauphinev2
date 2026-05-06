@@ -1,111 +1,100 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link'; 
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showServices, setShowServices] = useState(false);
-  const location = useLocation();
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+  const [isOpen, setIsOpen] = useState(false); 
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    setIsOpen(false);
-    if (location.pathname !== '/') {
-      window.location.href = `/#${sectionId}`;
-    } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeMenu();
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-light/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
+    <motion.nav 
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="fixed top-0 left-0 w-full z-[100] bg-[#ffffff] py-8 px-6 md:px-12 border-b border-dark/10"
+    >
+      <div className="max-w-[1800px] mx-auto grid grid-cols-2 md:grid-cols-4 items-start gap-4">
         
-        {/* Logo */}
-        <Link to="/" className="text-2xl font-extrabold tracking-tighter text-dark flex items-center gap-1" onClick={() => scrollToTop()}>
-          <span className="text-primary font-black text-3xl">.</span>Dauphine
-        </Link>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8 font-medium">
-          <button onClick={() => scrollToSection('about')} className="hover:text-primary transition-colors">About Us</button>
-          
-          {/* Dropdown Services */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setShowServices(true)}
-            onMouseLeave={() => setShowServices(false)}
-          >
-            <button className="flex items-center gap-1 hover:text-primary transition-colors">
-              Services <FiChevronDown className={`transition-transform ${showServices ? 'rotate-180' : ''}`} />
-            </button>
-            <AnimatePresence>
-              {showServices && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full left-0 mt-2 w-56 bg-white border-2 border-dark rounded-xl shadow-[4px_4px_0px_0px_#111111] overflow-hidden"
-                >
-                  <Link to="/service/social-media" className="block px-4 py-3 hover:bg-light font-medium border-b-2 border-dark/10">Social Media Management</Link>
-                  <Link to="/service/it-solution" className="block px-4 py-3 hover:bg-light font-medium">IT Solution</Link>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <button onClick={() => scrollToSection('faq')} className="hover:text-primary transition-colors">FAQ</button>
-          <button onClick={() => scrollToSection('portfolio')} className="hover:text-primary transition-colors">Portfolio</button>
+        <div className="flex flex-col relative z-[110]">
+          <Link to="/" onClick={scrollToTop} className="text-4xl font-black tracking-tighter text-dark leading-none">
+            Dauphiné<br />Creative
+          </Link>
         </div>
 
-        {/* Contact Button (Desktop) - Menggunakan gaya comic-box */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex flex-col space-y-1 text-sm font-medium text-dark/60 uppercase tracking-tighter">
+          <Link to="/projects" className="hover:text-dark transition-colors">Projects</Link>
+          <HashLink smooth to="/about" className="hover:text-dark transition-colors">About</HashLink>
+          <HashLink smooth to="/#contact" className="hover:text-dark transition-colors">Contact</HashLink>
+        </div>
+
+        <div className="hidden md:flex flex-col space-y-1 text-sm font-medium text-dark/60 uppercase tracking-tighter">
+          <Link to="/service/it-solution" className="hover:text-dark transition-colors">IT Solution</Link>
+          <Link to="/service/social-media" className="hover:text-dark transition-colors">Social Media</Link>
+        </div>
+
+        <div className="hidden md:flex flex-col items-end text-sm font-medium text-dark/60 uppercase tracking-tighter">
+          <span>Kota Bandung, Indonesia</span>
+          <span className="tabular-nums">{time}</span>
+        </div>
+
+        <div className="md:hidden flex justify-end relative z-[110]">
           <button 
-            onClick={() => scrollToSection('contact')} 
-            className="comic-box px-6 py-2 bg-primary text-white font-bold border-dark"
+            onClick={toggleMenu}
+            className="text-sm font-bold uppercase tracking-widest text-dark"
           >
-            Contact Us
+            {isOpen ? 'Close' : 'Menu'}
           </button>
         </div>
-
-        {/* Mobile Toggle */}
-        <button className="md:hidden text-2xl text-dark" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <FiX /> : <FiMenu />}
-        </button>
       </div>
 
-      {/* Mobile Menu (Sederhana) */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-white border-b-2 border-dark"
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 bg-[#F1FAEE] z-[105] flex flex-col justify-center px-6 pt-32 pb-12 overflow-y-auto"
           >
-            <div className="flex flex-col p-6 space-y-4">
-              <button onClick={() => scrollToSection('about')} className="text-left font-bold">About Us</button>
-              <Link to="/service/social-media" onClick={() => setIsOpen(false)} className="text-left font-bold text-primary">Service: Social Media</Link>
-              <Link to="/service/it-solution" onClick={() => setIsOpen(false)} className="text-left font-bold text-secondary">Service: IT Solution</Link>
-              <button onClick={() => scrollToSection('portfolio')} className="text-left font-bold">Portfolio</button>
-              <button onClick={() => scrollToSection('contact')} className="comic-box mt-4 bg-primary text-white py-2 text-center w-full">Contact Us</button>
+            <div className="flex flex-col space-y-8">
+              <div className="flex flex-col space-y-4">
+                <span className="text-[10px] font-bold text-dark/30 uppercase tracking-[0.3em]">Navigation</span>
+                <Link to="/projects" onClick={closeMenu} className="text-5xl font-black tracking-tighter text-dark leading-none">Projects</Link>
+                <HashLink smooth to="/about" onClick={closeMenu} className="text-5xl font-black tracking-tighter text-dark leading-none">About</HashLink>
+                <HashLink smooth to="/#contact" onClick={closeMenu} className="text-5xl font-black tracking-tighter text-dark leading-none">Contact</HashLink>
+              </div>
+
+              <div className="flex flex-col space-y-4 pt-8">
+                <span className="text-[10px] font-bold text-dark/30 uppercase tracking-[0.3em]">Services</span>
+                <Link to="/service/it-solution" onClick={closeMenu} className="text-2xl font-black tracking-tighter text-dark/60">IT Solution</Link>
+                <Link to="/service/social-media" onClick={closeMenu} className="text-2xl font-black tracking-tighter text-dark/60">Social Media</Link>
+              </div>
+            </div>
+
+            <div className="mt-auto pt-12 flex justify-between items-end text-[10px] font-bold text-dark/40 uppercase tracking-widest">
+              <span>Bandung, ID</span>
+              <span>{time}</span>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 

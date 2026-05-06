@@ -1,134 +1,168 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiEdit3, FiTrendingUp, FiCamera, FiUsers } from 'react-icons/fi';
 import SEO from '../components/common/SEO';
 import SocialPlatformCarousel from '../components/services/SocialPlatformCarousel';
 import ServiceContact from '../components/services/ServiceContact';
+import { AnimatePresence } from 'framer-motion';
+
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    y: 10,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1], 
+      staggerChildren: 0.2,    
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
+const PageWrapper = ({ children }) => {
+  return (
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const ServiceSocial = () => {
   useEffect(() => window.scrollTo(0, 0), []);
 
   const offers = [
     { 
+      id: "01",
       title: "Content Creation", 
-      desc: "Pembuatan konten visual dan tekstual (copywriting) yang menarik, relevan, dan dirancang khusus untuk target audiens.", 
-      icon: <FiEdit3 /> 
+      desc: "Pembuatan konten visual dan tekstual (copywriting) yang menarik, relevan, dan dirancang khusus untuk target audiens Anda.", 
+      tags: ["Visual", "Copywriting", "Branding"]
     },
     { 
+      id: "02",
       title: "Strategies & Concept", 
       desc: "Riset mendalam dan perencanaan kampanye media sosial untuk memastikan setiap postingan memiliki dampak terukur.", 
-      icon: <FiTrendingUp /> 
+      tags: ["Research", "Campaign", "Planning"]
     },
     { 
+      id: "03",
       title: "Product Photography", 
       desc: "Pengambilan foto produk berkualitas tinggi dengan art direction yang sesuai dengan identitas dan estetika brand Anda.", 
-      icon: <FiCamera /> 
+      tags: ["Art Direction", "High Quality", "Visual Identity"]
     },
     { 
+      id: "04",
       title: "Social Media Specialist", 
-      desc: "Manajemen akun secara menyeluruh, interaksi dengan audiens, dan analisis data performa untuk pertumbuhan yang berkelanjutan.", 
-      icon: <FiUsers /> 
-    },
-  ];
-
-  const reasons = [
-    {
-      title: "Strategi Berbasis Data",
-      desc: "Keputusan konten tidak dibuat asal, melainkan berdasarkan riset audiens dan analisis tren terkini."
-    },
-    {
-      title: "Konsistensi Visual",
-      desc: "Kami menjaga nada, warna, dan karakter brand Anda tetap seragam dan profesional di semua platform."
-    },
-    {
-      title: "Konten Orisinal",
-      desc: "Visual, foto, dan video yang kami produksi dirancang secara eksklusif, bukan sekadar template."
-    },
-    {
-      title: "Interaksi Proaktif",
-      desc: "Kami tidak hanya memposting, tapi aktif membangun percakapan dua arah dengan komunitas Anda."
-    },
-    {
-      title: "Laporan Transparan",
-      desc: "Dapatkan analitik rutin yang mudah dipahami untuk memantau langsung pertumbuhan akun Anda."
-    },
-    {
-      title: "Tim Dedikasi",
-      desc: "Satu tim khusus dari copywriter hingga desainer yang fokus penuh pada kesuksesan brand Anda."
+      desc: "Manajemen akun secara menyeluruh, interaksi audiens, dan analisis data performa untuk pertumbuhan yang berkelanjutan.", 
+      tags: ["Management", "Analytics", "Growth"]
     }
   ];
 
+  const reasons = [
+    { title: "Strategi Berbasis Data", desc: "Keputusan konten tidak dibuat asal, melainkan berdasarkan riset audiens dan analisis tren terkini." },
+    { title: "Konsistensi Visual", desc: "Kami menjaga nada, warna, dan karakter brand Anda tetap seragam di semua platform." },
+    { title: "Konten Orisinal", desc: "Visual, foto, dan video dirancang secara eksklusif, bukan sekadar menggunakan template." },
+    { title: "Interaksi Proaktif", desc: "Kami aktif membangun percakapan dua arah dengan komunitas Anda, bukan sekadar memposting." },
+    { title: "Laporan Transparan", desc: "Dapatkan analitik rutin yang mudah dipahami untuk memantau langsung pertumbuhan akun Anda." },
+    { title: "Tim Dedikasi", desc: "Satu tim khusus dari copywriter hingga desainer yang fokus penuh pada kesuksesan brand Anda." }
+  ];
+
   return (
-    <div className="bg-light min-h-screen">
+    <div className="bg-[#ffffff] min-h-screen">
       <SEO 
         title="Social Media Management & Strategy" 
-        description="Membangun ekosistem digital yang hidup dan komunitas yang setia melalui konten kreatif yang relevan serta strategi data yang presisi." 
+        description="Membangun ekosistem digital yang hidup dan komunitas yang setia melalui konten kreatif." 
       />
 
-      {/* Hero Banner Section - Updated Photo & Reduced Opacity */}
-      <section className="relative min-h-[80vh] flex items-center justify-center pt-20 overflow-hidden px-6 md:px-12 border-b-4 border-dark">
-        {/* Background Layer */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1920"
-            alt="Team Meeting Social Media Strategy"
-            className="w-full h-full object-cover"
-          />
-          {/* Overlay - Reduced opacity to 75% for better image visibility */}
-          <div className="absolute inset-0 bg-[#F1FAEE]/65 backdrop-blur-[1px]" />
-        </div>
-
-        {/* Content Layer */}
-        <div className="container mx-auto relative z-10 text-center md:text-left">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h4 className="text-primary font-bold mb-2 tracking-widest uppercase text-sm">What We Do</h4>
-            <h1 className="text-5xl md:text-7xl font-black text-secondary mb-8 leading-tight">
-              Social Media <span className="text-accent underline decoration-wavy">Management</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-dark/80 font-medium max-w-4xl leading-relaxed">
-              Membangun ekosistem digital yang hidup dan komunitas yang setia melalui konten kreatif yang relevan serta strategi data yang presisi untuk memastikan brand Anda tetap unggul di tengah persaingan media sosial yang dinamis.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Services We Offer Section */}
-      <section className="container mx-auto px-6 md:px-12 py-16 mb-4">
-        <h3 className="text-3xl font-black text-secondary mb-10">Services We Offer</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {offers.map((offer, idx) => (
-            <div key={idx} className="comic-box p-8 bg-yellow-100 hover:-translate-y-2 transition-transform h-full">
-              <div className="text-4xl text-primary mb-6 shrink-0">{offer.icon}</div>
-              <h4 className="text-xl font-black text-dark mb-4 leading-tight">{offer.title}</h4>
-              <p className="text-sm text-dark/80 font-medium leading-relaxed">{offer.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Social Platform Carousel Section */}
-      <SocialPlatformCarousel />
-
-      {/* Why Dauphine Creative Section */}
-      <section className="container mx-auto px-6 md:px-12 py-20">
-        <div className="text-center mb-12">
-          <h3 className="text-4xl md:text-5xl font-black text-secondary mb-4">
-            Why <span className="text-primary">Dauphine Creative?</span>
-          </h3>
-          <p className="text-dark/70 font-medium max-w-2xl mx-auto text-lg">
-            Kami tidak hanya mengelola media sosial, kami merawat dan membesarkan citra digital Anda melalui pendekatan yang personal dan profesional.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reasons.map((reason, idx) => (
-            <div key={idx} className="comic-box p-8 bg-white hover:-translate-y-2 transition-transform h-full flex flex-col items-start text-left">
-              <h4 className="text-2xl font-black text-dark mb-3 leading-tight">{reason.title}</h4>
-              <p className="text-dark/80 font-medium leading-relaxed flex-1">
-                {reason.desc}
+      <section className="pt-48 pb-24 px-6 md:px-12">
+        <div className="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="hidden md:block">
+            <span className="text-sm font-medium text-dark/40 uppercase tracking-tighter">Capabilities / 02</span>
+          </div>
+          
+          <div className="md:col-start-2 md:col-span-3">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+              <h1 className="text-5xl md:text-8xl font-medium text-dark tracking-tighter leading-[0.9] mb-12">
+                Social Media <span className="text-dark/40">Management.</span>
+              </h1>
+              <p className="text-xl md:text-3xl text-dark/70 font-medium max-w-4xl leading-tight">
+                Membangun ekosistem digital yang hidup dan komunitas yang setia melalui konten kreatif yang relevan serta strategi data yang presisi.
               </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 border-t border-dark/10">
+        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+            <div className="hidden md:block">
+              <span className="text-sm font-medium text-dark/40 uppercase tracking-tighter">Services we offer</span>
             </div>
-          ))}
+          </div>
+          
+          <div className="flex flex-col">
+            {offers.map((offer, idx) => (
+              <div key={idx} className="group grid grid-cols-1 md:grid-cols-4 gap-4 py-16 border-t border-dark/10 hover:bg-dark/[0.02] transition-all duration-500">
+                <div className="hidden md:block text-sm font-bold text-dark/30">({offer.id})</div>
+                <div className="md:col-span-2">
+                  <h3 className="text-3xl md:text-5xl font-medium tracking-tight mb-4 group-hover:translate-x-2 transition-transform duration-500">
+                    {offer.title}
+                  </h3>
+                  <p className="text-dark/60 text-lg max-w-md">{offer.desc}</p>
+                </div>
+                <div className="flex flex-wrap gap-2 items-start justify-end">
+                  {offer.tags.map(tag => (
+                    <span key={tag} className="text-[10px] uppercase font-bold tracking-widest border border-dark/20 px-2 py-1 rounded-full">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+            <div className="border-t border-dark/10"></div>
+          </div>
+        </div>
+      </section>
+
+      <div className="py-12 border-b border-dark/10">
+        <SocialPlatformCarousel />
+      </div>
+
+      <section className="py-32">
+        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-24">
+            <div className="hidden md:block">
+              <span className="text-sm font-medium text-dark/40 uppercase tracking-tighter">Our Approach</span>
+            </div>
+            <div className="md:col-start-2 md:col-span-3">
+              <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight leading-tight">
+                Merawat citra digital Anda, <br />
+                <span className="text-dark/40">dengan sentuhan personal.</span>
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20 md:col-start-2 md:ml-[25%]">
+            {reasons.map((reason, idx) => (
+              <div key={idx} className="flex flex-col gap-4">
+                <span className="text-xs font-bold text-dark/20">0{idx + 1}</span>
+                <h4 className="text-xl font-bold text-dark tracking-tight uppercase">{reason.title}</h4>
+                <p className="text-dark/60 leading-relaxed text-sm">{reason.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

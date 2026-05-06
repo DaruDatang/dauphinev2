@@ -6,6 +6,8 @@ import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import PageLoader from './components/common/PageLoader';
 import Home from './pages/Home';
+import ProjectList from './pages/ProjectList';
+import About from './pages/About'; 
 import ServiceIT from './pages/ServiceIT';
 import ServiceSocial from './pages/ServiceSocial';
 
@@ -20,19 +22,25 @@ const AnimatedRoutes = () => {
     }, 800);
 
     return () => clearTimeout(timer);
-  }, [location.pathname]); 
+  }, [location.pathname]);
 
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {loading && <PageLoader />}
       </AnimatePresence>
 
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/service/it-solution" element={<ServiceIT />} />
-        <Route path="/service/social-media" element={<ServiceSocial />} />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<ProjectList />} />
+          
+          <Route path="/about" element={<About />} />
+          
+          <Route path="/service/it-solution" element={<ServiceIT />} />
+          <Route path="/service/social-media" element={<ServiceSocial />} />
+        </Routes>
+      </AnimatePresence>
     </>
   );
 };
@@ -40,7 +48,7 @@ const AnimatedRoutes = () => {
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-white">
         <Navbar />
         <main className="flex-grow">
           <AnimatedRoutes />

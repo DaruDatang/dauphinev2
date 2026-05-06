@@ -1,55 +1,88 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FiMonitor, FiSmartphone } from 'react-icons/fi';
 
 const ServicesList = () => {
   const services = [
     {
+      id: "01",
       title: "Social Media Management",
       desc: "Tingkatkan engagement dan visibilitas brand Anda dengan strategi konten yang kreatif dan organik.",
-      icon: <FiSmartphone className="text-5xl mb-4 text-primary" />,
       link: "/service/social-media",
-      bgColor: "bg-yellow-200"
+      tags: ["Creative", "Strategy"]
     },
     {
+      id: "02",
       title: "IT Solution",
       desc: "Pengembangan sistem berbasis website & otomasi proses bisnis yang dirancang khusus untuk kebutuhan Anda.",
-      icon: <FiMonitor className="text-5xl mb-4 text-accent" />,
       link: "/service/it-solution",
-      bgColor: "bg-blue-100"
+      tags: ["Web Design", "Development"]
     }
   ];
 
   return (
-    <section id="services" className="py-24 bg-light relative">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="text-center mb-16">
-          <h4 className="text-primary font-bold mb-2 tracking-widest uppercase text-sm">Our Services</h4>
-          <h2 className="text-4xl md:text-5xl font-black text-secondary">Solusi Tepat Untuk Bisnis Anda</h2>
+    <section id="services" className="py-32 bg-[#ffffff] border-t border-dark/10">
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-24">
+          <div className="hidden md:block">
+            <span className="text-sm font-medium text-dark/40 uppercase tracking-tighter">
+              Capabilities
+            </span>
+          </div>
+          <div className="md:col-start-2 md:col-span-3">
+            <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight">
+              Solusi Tepat Untuk <br /> 
+              <span className="text-dark/40">Bisnis Anda.</span>
+            </h2>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="flex flex-col">
           {services.map((service, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
+              key={service.id}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
             >
-              <Link to={service.link} className={`block h-full comic-box p-10 ${service.bgColor} hover:bg-white`}>
-                {service.icon}
-                <h3 className="text-2xl font-black text-secondary mb-3">{service.title}</h3>
-                <p className="text-dark/80 font-medium">
-                  {service.desc}
-                </p>
-                <div className="mt-6 flex items-center text-primary font-bold">
-                  Explore Service <span className="ml-2 text-xl leading-none">&rarr;</span>
+              <Link 
+                to={service.link} 
+                className="group grid grid-cols-1 md:grid-cols-4 gap-4 py-12 border-t border-dark/10 hover:bg-dark/[0.02] transition-all duration-500"
+              >
+                <div className="hidden md:block">
+                  <span className="text-sm font-bold text-dark/30 group-hover:text-dark transition-colors">
+                    ({service.id})
+                  </span>
+                </div>
+
+                <div className="md:col-span-2 flex flex-col gap-4">
+                  <h3 className="text-3xl md:text-5xl font-medium tracking-tight group-hover:translate-x-2 transition-transform duration-500">
+                    {service.title}
+                  </h3>
+                  <p className="text-dark/60 text-lg md:max-w-md">
+                    {service.desc}
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-end justify-between">
+                  <div className="flex gap-2">
+                    {service.tags.map((tag) => (
+                      <span key={tag} className="text-[10px] uppercase font-bold tracking-widest border border-dark/20 px-2 py-1 rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    →
+                  </span>
                 </div>
               </Link>
             </motion.div>
           ))}
+          <div className="border-t border-dark/10"></div>
         </div>
+
       </div>
     </section>
   );
