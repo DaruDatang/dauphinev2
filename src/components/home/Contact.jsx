@@ -66,7 +66,7 @@ const Contact = () => {
   const inputClass = "w-full bg-transparent border-b border-dark/20 focus:border-dark outline-none py-4 text-dark transition-all autofill:bg-transparent [-webkit-text-fill-color:black] [box-shadow:0_0_0px_1000px_#ffffff_inset] [transition:background-color_5000s_ease-in-out_0s] text-lg placeholder:text-dark/20";
 
   return (
-    <section id="contact" className="py-32 bg-white border-t border-dark/10">
+    <section id="contact" className="py-32 bg-white">
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="hidden md:block">
@@ -145,7 +145,7 @@ const Contact = () => {
 
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                     <p className="text-xs text-dark/40 max-w-sm leading-relaxed uppercase tracking-tighter">
-                      By submitting this form, you agree to our privacy policy and consent to us contacting you regarding your inquiry.
+                      By sending this message, you agree to our privacy policy regarding the storage of contact data.
                     </p>
                     
                     <button 

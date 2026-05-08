@@ -16,7 +16,7 @@ const TechStackCarousel = () => {
   const duplicatedTechs = [...techs, ...techs, ...techs];
 
   return (
-    <section className="py-24 bg-[#ffffff] border-t border-dark/10 overflow-hidden">
+    <section className="py-24 bg-[#ffffff] border-dark/10 overflow-hidden">
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">

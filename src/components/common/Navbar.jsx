@@ -40,7 +40,7 @@ const Navbar = () => {
         <div className="hidden md:flex flex-col space-y-1 text-sm font-medium text-dark/60 uppercase tracking-tighter">
           <Link to="/projects" className="hover:text-dark transition-colors">Projects</Link>
           <HashLink smooth to="/about" className="hover:text-dark transition-colors">About</HashLink>
-          <HashLink smooth to="/#contact" className="hover:text-dark transition-colors">Contact</HashLink>
+          <HashLink smooth to="/contact" className="hover:text-dark transition-colors">Contact</HashLink>
         </div>
 
         <div className="hidden md:flex flex-col space-y-1 text-sm font-medium text-dark/60 uppercase tracking-tighter">

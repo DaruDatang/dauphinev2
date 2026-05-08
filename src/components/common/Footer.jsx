@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#ffffff] pt-24 pb-0 overflow-hidden border-t border-dark/10 relative">
+    <footer className="bg-[#ffffff] pt-24 pb-0 overflow-hidden border-dark/10 relative">
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20 md:mb-32">
           <div className="flex flex-col gap-1">
@@ -21,9 +21,8 @@ const Footer = () => {
               Follow & Locate Us
             </span>
             <div className="flex gap-4 text-dark/40">
-              <a href="#" className="hover:text-dark transition-colors"><FaInstagram size={20} /></a>
-              <a href="#" className="hover:text-dark transition-colors"><FaTiktok size={18} /></a>
-              <a href="#" className="hover:text-dark transition-colors"><FaMapPin size={18} /></a>
+              <a href="https://www.instagram.com/dauphinecreative.id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-dark transition-colors"><FaInstagram size={20} /></a>
+              <a href="https://www.google.com/maps/place/Dauphine+Creative/@-6.227685,106.845254,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69f43b3c9c9c9d:0x2e69f43b3c9c9c9d!8m2!3d-6.227685!4d106.845254" className="hover:text-dark transition-colors"><FaMapPin size={18} /></a>
             </div>
           </div>
 

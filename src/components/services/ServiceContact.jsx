@@ -30,7 +30,7 @@ const ServiceContact = ({ serviceName }) => {
   const inputClass = "w-full bg-transparent border-b border-dark/20 focus:border-dark outline-none py-4 text-dark transition-all text-lg placeholder:text-dark/20";
 
   return (
-    <section className="py-32 bg-[#ffffff] border-t border-dark/10">
+    <section className="py-32 bg-[#ffffff] border-dark/10">
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -49,8 +49,8 @@ const ServiceContact = ({ serviceName }) => {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight leading-tight mb-16">
-                Tertarik dengan layanan <br />
-                <span className="text-dark/40">{serviceName} kami?</span>
+                Interested in our <br />
+                <span className="text-dark/40">{serviceName} services?</span>
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-12">
@@ -95,7 +95,7 @@ const ServiceContact = ({ serviceName }) => {
 
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pt-4">
                   <p className="text-xs text-dark/40 max-w-sm uppercase tracking-tighter">
-                    Klik tombol kirim untuk melanjutkan diskusi melalui Gmail.
+                    By sending this message, you agree to our privacy policy regarding the storage of contact data.
                   </p>
                   
                   <button 

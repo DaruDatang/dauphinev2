@@ -11,11 +11,11 @@ const ProjectList = () => {
       title: "Booking System for Photo Studio",
       category: "IT Solution",
       year: "2025",
-      desc: "Membantu perusahaan foto studio mendigitalisasi operasional mereka, dari pemesanan konvensional menjadi satu sistem pemesanan yang terintegrasi.",
+      desc: "Helping photo studio companies digitize their operations, transforming conventional booking processes into one integrated booking system.",
       results: [
-        "Sistem terpusat untuk UMKM",
-        "Peningkatan performance bisnis",
-        "Mengurangi inefisiensi operasional"
+        "Centralized system for Small Businesses",
+        "Improved business performance",
+        "Reduced operational inefficiencies"
       ],
       image: "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?q=80&w=2071&auto=format&fit=crop" 
     },
@@ -24,11 +24,11 @@ const ProjectList = () => {
       title: "Social Media Rebranding",
       category: "Creative Strategy",
       year: "2026",
-      desc: "Merancang ulang identitas visual dan strategi konten untuk brand F&B, meningkatkan awareness dan interaksi secara organik.",
+      desc: "Designing a new visual identity and content strategy for growing brands, enhancing awareness and organic engagement.",
       results: [
-        "Peningkatan engagement rate 150%",
-        "Identitas visual yang lebih konsisten",
-        "Pertumbuhan followers organik"
+        "150% increase in engagement rate",
+        "More consistent visual identity",
+        "Organic follower growth"
       ],
       image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop" 
     }

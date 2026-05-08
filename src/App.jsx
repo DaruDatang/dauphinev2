@@ -8,6 +8,7 @@ import PageLoader from './components/common/PageLoader';
 import Home from './pages/Home';
 import ProjectList from './pages/ProjectList';
 import About from './pages/About'; 
+import Contact from './pages/Contact';
 import ServiceIT from './pages/ServiceIT';
 import ServiceSocial from './pages/ServiceSocial';
 
@@ -34,9 +35,8 @@ const AnimatedRoutes = () => {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<ProjectList />} />
-          
           <Route path="/about" element={<About />} />
-          
+          <Route path="/contact" element={<Contact />} />
           <Route path="/service/it-solution" element={<ServiceIT />} />
           <Route path="/service/social-media" element={<ServiceSocial />} />
         </Routes>

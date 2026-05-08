@@ -48,43 +48,43 @@ const ServiceSocial = () => {
     { 
       id: "01",
       title: "Content Creation", 
-      desc: "Pembuatan konten visual dan tekstual (copywriting) yang menarik, relevan, dan dirancang khusus untuk target audiens Anda.", 
+      desc: "Creating engaging and relevant visual and written content (copywriting), tailored specifically for your target audience.", 
       tags: ["Visual", "Copywriting", "Branding"]
     },
     { 
       id: "02",
       title: "Strategies & Concept", 
-      desc: "Riset mendalam dan perencanaan kampanye media sosial untuk memastikan setiap postingan memiliki dampak terukur.", 
+      desc: "In-depth research and social media campaign planning to ensure every post has a measurable impact.", 
       tags: ["Research", "Campaign", "Planning"]
     },
     { 
       id: "03",
       title: "Product Photography", 
-      desc: "Pengambilan foto produk berkualitas tinggi dengan art direction yang sesuai dengan identitas dan estetika brand Anda.", 
+      desc: "Taking high-quality product photos with art direction that aligns with your brand's identity and aesthetic.", 
       tags: ["Art Direction", "High Quality", "Visual Identity"]
     },
     { 
       id: "04",
       title: "Social Media Specialist", 
-      desc: "Manajemen akun secara menyeluruh, interaksi audiens, dan analisis data performa untuk pertumbuhan yang berkelanjutan.", 
+      desc: "Comprehensive account management, audience engagement, and performance data analysis for sustainable growth.", 
       tags: ["Management", "Analytics", "Growth"]
     }
   ];
 
   const reasons = [
-    { title: "Strategi Berbasis Data", desc: "Keputusan konten tidak dibuat asal, melainkan berdasarkan riset audiens dan analisis tren terkini." },
-    { title: "Konsistensi Visual", desc: "Kami menjaga nada, warna, dan karakter brand Anda tetap seragam di semua platform." },
-    { title: "Konten Orisinal", desc: "Visual, foto, dan video dirancang secara eksklusif, bukan sekadar menggunakan template." },
-    { title: "Interaksi Proaktif", desc: "Kami aktif membangun percakapan dua arah dengan komunitas Anda, bukan sekadar memposting." },
-    { title: "Laporan Transparan", desc: "Dapatkan analitik rutin yang mudah dipahami untuk memantau langsung pertumbuhan akun Anda." },
-    { title: "Tim Dedikasi", desc: "Satu tim khusus dari copywriter hingga desainer yang fokus penuh pada kesuksesan brand Anda." }
+    { title: "Data-Driven Strategy", desc: "Content decisions are not made randomly, but based on audience research and analysis of current trends." },
+    { title: "Visual Consistency", desc: "We maintain your brand's tone, colors, and character consistently across all platforms." },
+    { title: "Original Content", desc: "Visuals, photos, and videos are designed exclusively for you, not just using templates." },
+    { title: "Proactive Engagement", desc: "We actively build two-way conversations with your community, not just posting content." },
+    { title: "Transparent Reporting", desc: "Receive regular analytics that are easy to understand to monitor your account's growth directly." },
+    { title: "Dedicated Team", desc: "A specialized team from copywriters to designers who are fully focused on your brand's success." }
   ];
 
   return (
     <div className="bg-[#ffffff] min-h-screen">
       <SEO 
         title="Social Media Management & Strategy" 
-        description="Membangun ekosistem digital yang hidup dan komunitas yang setia melalui konten kreatif." 
+        description="Building a thriving digital ecosystem and a loyal community through creative content." 
       />
 
       <section className="pt-48 pb-24 px-6 md:px-12">
@@ -99,14 +99,14 @@ const ServiceSocial = () => {
                 Social Media <span className="text-dark/40">Management.</span>
               </h1>
               <p className="text-xl md:text-3xl text-dark/70 font-medium max-w-4xl leading-tight">
-                Membangun ekosistem digital yang hidup dan komunitas yang setia melalui konten kreatif yang relevan serta strategi data yang presisi.
+                Building a thriving digital ecosystem and a loyal community through creative content that resonates and data-driven strategies.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 border-t border-dark/10">
+      <section className="py-24 border-dark/10">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
             <div className="hidden md:block">
@@ -116,7 +116,7 @@ const ServiceSocial = () => {
           
           <div className="flex flex-col">
             {offers.map((offer, idx) => (
-              <div key={idx} className="group grid grid-cols-1 md:grid-cols-4 gap-4 py-16 border-t border-dark/10 hover:bg-dark/[0.02] transition-all duration-500">
+              <div key={idx} className="group grid grid-cols-1 md:grid-cols-4 gap-4 py-16 border-dark/10 hover:bg-dark/[0.02] transition-all duration-500">
                 <div className="hidden md:block text-sm font-bold text-dark/30">({offer.id})</div>
                 <div className="md:col-span-2">
                   <h3 className="text-3xl md:text-5xl font-medium tracking-tight mb-4 group-hover:translate-x-2 transition-transform duration-500">
@@ -131,12 +131,12 @@ const ServiceSocial = () => {
                 </div>
               </div>
             ))}
-            <div className="border-t border-dark/10"></div>
+            <div className=" border-dark/10"></div>
           </div>
         </div>
       </section>
 
-      <div className="py-12 border-b border-dark/10">
+      <div className="py-12 border-dark/10">
         <SocialPlatformCarousel />
       </div>
 
@@ -148,8 +148,8 @@ const ServiceSocial = () => {
             </div>
             <div className="md:col-start-2 md:col-span-3">
               <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight leading-tight">
-                Merawat citra digital Anda, <br />
-                <span className="text-dark/40">dengan sentuhan personal.</span>
+                Maintaining Your Digital Presence, <br />
+                <span className="text-dark/40">with a Personal Touch.</span>
               </h2>
             </div>
           </div>

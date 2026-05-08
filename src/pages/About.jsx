@@ -8,10 +8,10 @@ import imgMatthew from '../assets/about/matthew.svg';
 
 const About = () => {
   const missions = [
-    { title: "Menjadi creative & IT partner terpercaya dalam membangun digital presence yang kuat dan berkelanjutan.", desc: "Mengembangkan website dan strategi digital yang selaras dengan identitas brand dengan menggabungkan kreativitas dan teknologi untuk hasil maksimal" },
-    { title: "Mengoptimalkan setiap keputusan bisnis melalui data yang terukur dan bermakna.", desc: "Menganalisis dan mengolah data menjadi insight actionable untuk meningkatkan efektivitas dan hasil bisnis secara nyata" },
-    { title: "Membangun sistem kerja yang transparan, terstruktur, dan efisien.", desc: "Menyediakan workflow yang jelas dengan dashboard dan laporan rutin agar setiap proses terpantau dan sesuai target." },
-    { title: "Memberikan pengalaman layanan digital yang cepat, responsif, dan profesional.", desc: "Memberikan layanan yang mudah diakses dengan komunikasi responsif dan solusi cepat tanpa mengorbankan kualitas." },
+    { title: "Becoming a trusted creative & IT partner in building a strong and sustainable digital presence.", desc: "Developing websites and digital strategies that align with your brand identity by combining creativity and technology for maximum results." },
+    { title: "Optimizing every business decision through measurable and meaningful data.", desc: "Analyzing and processing data into actionable insights to enhance business effectiveness and real-world outcomes." },
+    { title: "Building transparent, structured, and efficient work systems.", desc: "Providing clear workflows with dashboards and regular reports to ensure every process is monitored and aligned with targets." },
+    { title: "Delivering fast, responsive, and professional digital service experiences.", desc: "Offering accessible services with responsive communication and quick solutions without compromising quality." },
   ];
 
   const team = [

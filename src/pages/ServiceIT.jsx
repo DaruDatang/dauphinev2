@@ -46,32 +46,32 @@ const ServiceIT = () => {
   const offers = [
     { 
       id: "01",
-      title: "Sistem Berbasis Website", 
-      desc: "Pembuatan website company profile, e-commerce, hingga web-app kompleks yang responsif, cepat, dan SEO-friendly.", 
+      title: "Web-based system development", 
+      desc: "Development of company profile websites, e-commerce platforms, and complex web applications that are responsive, fast, and SEO-friendly.", 
       tags: ["Web App", "E-Commerce", "Responsive"]
     },
     { 
       id: "02",
-      title: "Otomasi Proses Bisnis", 
-      desc: "Mengubah proses manual menjadi otomatis dengan sistem ERP, CRM, atau custom software untuk meningkatkan efisiensi waktu dan biaya.", 
+      title: "Business Process Automation", 
+      desc: "Transforming manual processes into automated workflows with ERP, CRM, or custom software to enhance operational efficiency and reduce costs.", 
       tags: ["ERP/CRM", "Custom Software", "Efficiency"]
     }
   ];
 
   const reasons = [
-    { title: "Kecepatan Tanpa Pintasan", desc: "Sprint pengerjaan agile yang memberikan progress nyata tanpa mengorbankan kualitas kode." },
-    { title: "Arsitektur Skalabel", desc: "Dibangun dengan fondasi kode yang bersih agar mudah dikembangkan seiring pertumbuhan bisnis." },
-    { title: "Desain x Engineering", desc: "Kami memastikan antarmuka yang indah berjalan mulus dengan logika sistem yang kuat." },
-    { title: "Keamanan Terjamin", desc: "Prioritas pada perlindungan data. Sistem diuji ketat sebelum diluncurkan." },
-    { title: "Garansi Dukungan", desc: "Kami memastikan sistem terawat dan didukung penuh setelah masa rilis." },
-    { title: "Kepemilikan Jelas", desc: "Transparansi penuh atas repositori kode. Anda memiliki kontrol penuh atas produk digital Anda." }
+    { title: "Speed Without Compromises", desc: "Agile development sprints that deliver real progress without sacrificing code quality." },
+    { title: "Scalable Architecture", desc: "Built on a clean code foundation for easy development as your business grows." },
+    { title: "Design x Engineering", desc: "We ensure beautiful interfaces run smoothly with robust system logic." },
+    { title: "Guaranteed Security", desc: "Data protection is a priority. Systems are rigorously tested before launch." },
+    { title: "Support Guarantee", desc: "We ensure your systems are well-maintained and fully supported after launch." },
+    { title: "Clear Ownership", desc: "Full transparency over the code repository. You have complete control over your digital product." }
   ];
 
   return (
     <div className="bg-[#ffffff] min-h-screen">
       <SEO 
         title="IT Solution & Software Development" 
-        description="Membangun fondasi infrastruktur digital yang tangguh dan future-proof." 
+        description="Building a strong and future-proof digital infrastructure foundation." 
       />
 
       <section className="pt-48 pb-24 px-6 md:px-12">
@@ -85,14 +85,14 @@ const ServiceIT = () => {
                 IT <span className="text-dark/40">Solution.</span>
               </h1>
               <p className="text-xl md:text-3xl text-dark/70 font-medium max-w-4xl leading-tight">
-                Membangun fondasi infrastruktur digital yang tangguh dan future-proof untuk mengakselerasi efisiensi operasional bisnis Anda.
+                Building a strong and future-proof digital infrastructure foundation to accelerate your business operations.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 border-t border-dark/10">
+      <section className="py-24 ">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
             <div className="hidden md:block">
@@ -122,7 +122,7 @@ const ServiceIT = () => {
         </div>
       </section>
 
-      <div className="py-12 border-b border-dark/10">
+      <div className="py-12 border-dark/10">
         <TechStackCarousel />
       </div>
 
@@ -134,8 +134,8 @@ const ServiceIT = () => {
             </div>
             <div className="md:col-start-2 md:col-span-3">
               <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight leading-tight">
-                Dibangun untuk performa, <br />
-                <span className="text-dark/40">dirancang untuk masa depan.</span>
+                Built for performance, <br />
+                <span className="text-dark/40">designed for the future.</span>
               </h2>
             </div>
           </div>

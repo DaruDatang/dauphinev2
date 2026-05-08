@@ -5,10 +5,10 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
-    { question: "Bagaimana proses kerjanya?", answer: "Kami mulai dengan diskusi kebutuhan, perancangan konsep, pengembangan (development), hingga tahap peluncuran dan evaluasi." },
-    { question: "Apakah tim yang mengerjakan cukup berpengalaman?", answer: "Tentu! Tim kami terdiri dari ahli di bidang IT Solution dan Social Media yang sudah terbiasa menangani berbagai skala project." },
-    { question: "Apakah butuh banyak dokumen (paperwork)?", answer: "Kami mengutamakan efisiensi. Dokumen yang diperlukan hanyalah proposal persetujuan, kontrak kerja sederhana, dan brief project." },
-    { question: "Berapa rate/harga layanannya?", answer: "Harga sangat fleksibel dan disesuaikan dengan skala serta kompleksitas project Anda. Mari diskusikan untuk penawaran terbaik." }
+    { question: "How does the process work?", answer: "We start with a discussion about your needs, then move on to concept design, development, and finally launch and evaluation." },
+    { question: "Is the team experienced enough?", answer: "Absolutely! Our team consists of experts in IT Solution and Social Media who are experienced in handling projects of various scales." },
+    { question: "Do I need to provide a lot of documentation (paperwork)?", answer: "We prioritize efficiency. The required documents are simply a proposal for approval, a simple employment contract, and a project brief." },
+    { question: "What are the rates/prices for your services?", answer: "Pricing is very flexible and tailored to the scale and complexity of your project. Let's discuss to get the best offer." }
   ];
 
   const toggleFAQ = (index) => {
@@ -16,7 +16,7 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-32 bg-[#ffffff] border-t border-dark/10">
+    <section id="faq" className="py-32 bg-[#ffffff]">
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -29,8 +29,8 @@ const FAQ = () => {
 
           <div className="md:col-start-2 md:col-span-3">
             <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight mb-16">
-              Bekerja sama dengan kami <br />
-              <span className="text-dark/40">sangat mudah.</span>
+              Working with us is <br />
+              <span className="text-dark/40">very easy.</span>
             </h2>
 
             <div className="flex flex-col">

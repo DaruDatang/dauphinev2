@@ -2,10 +2,8 @@ import { motion } from 'framer-motion';
 import SEO from '../components/common/SEO';
 import Hero from '../components/home/Hero';
 import ServicesList from '../components/home/ServicesList';
-import ClientCarousel from '../components/home/ClientCarousel';
 import FAQ from '../components/home/FAQ';
 import Contact from '../components/home/Contact';
-import Milestone from '../components/home/Milestone';
 
 const pageVariants = {
   initial: {
@@ -47,8 +45,6 @@ const Home = () => {
       
       <Hero />
       <ServicesList />
-      <ClientCarousel /> 
-      <Milestone />
       <FAQ />
       <Contact />
     </motion.div>

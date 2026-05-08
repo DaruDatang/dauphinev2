@@ -6,21 +6,21 @@ const ServicesList = () => {
     {
       id: "01",
       title: "Social Media Management",
-      desc: "Tingkatkan engagement dan visibilitas brand Anda dengan strategi konten yang kreatif dan organik.",
+      desc: "Boost your brand engagement and visibility with creative and organic content strategies.",
       link: "/service/social-media",
       tags: ["Creative", "Strategy"]
     },
     {
       id: "02",
       title: "IT Solution",
-      desc: "Pengembangan sistem berbasis website & otomasi proses bisnis yang dirancang khusus untuk kebutuhan Anda.",
+      desc: "Development of web-based systems and business process automation designed specifically for your needs.",
       link: "/service/it-solution",
       tags: ["Web Design", "Development"]
-    }
+    },
   ];
 
   return (
-    <section id="services" className="py-32 bg-[#ffffff] border-t border-dark/10">
+    <section id="services" className="py-32 bg-[#ffffff]">
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-24">
@@ -31,8 +31,8 @@ const ServicesList = () => {
           </div>
           <div className="md:col-start-2 md:col-span-3">
             <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight">
-              Solusi Tepat Untuk <br /> 
-              <span className="text-dark/40">Bisnis Anda.</span>
+              The right solution <br /> 
+              <span className="text-dark/40">for your business.</span>
             </h2>
           </div>
         </div>
