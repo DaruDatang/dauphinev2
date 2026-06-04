@@ -11,6 +11,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ServiceIT from './pages/ServiceIT';
 import ServiceSocial from './pages/ServiceSocial';
+import AdminDashboard from './pages/admin/Dashboard';
+import AdminLogin from './pages/admin/Login';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -39,22 +41,36 @@ const AnimatedRoutes = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/service/it-solution" element={<ServiceIT />} />
           <Route path="/service/social-media" element={<ServiceSocial />} />
+          <Route path="/dauphine-admin" element={<AdminDashboard />} />
+          <Route path="/dauphine-admin/login" element={<AdminLogin />} />
         </Routes>
       </AnimatePresence>
     </>
   );
 };
 
+const AppContent = () => {
+  const location = useLocation();
+  
+  const isAdminPage = location.pathname.startsWith('/dauphine-admin');
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      {!isAdminPage && <Navbar />}
+      
+      <main className="flex-grow">
+        <AnimatedRoutes />
+      </main>
+      
+      {!isAdminPage && <Footer />}
+    </div>
+  );
+};
+
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-white">
-        <Navbar />
-        <main className="flex-grow">
-          <AnimatedRoutes />
-        </main>
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   );
 }

@@ -4,6 +4,7 @@ import Hero from '../components/home/Hero';
 import ServicesList from '../components/home/ServicesList';
 import FAQ from '../components/home/FAQ';
 import Contact from '../components/home/Contact';
+import Feedback from '../components/home/Feedback';
 
 const pageVariants = {
   initial: {
@@ -37,16 +38,15 @@ const Home = () => {
       exit="exit"
       className="overflow-hidden bg-[#ffffff]"
     >
-
       <SEO 
         title="Dauphiné Creative — Digital Agency" 
         description="Dauphine Creative membantu mengubah ide menjadi produk digital yang andal dan berdampak nyata." 
       />
-      
       <Hero />
       <ServicesList />
       <FAQ />
       <Contact />
+      <Feedback />
     </motion.div>
   );
 };

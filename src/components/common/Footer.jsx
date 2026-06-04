@@ -22,7 +22,7 @@ const Footer = () => {
             </span>
             <div className="flex gap-4 text-dark/40">
               <a href="https://www.instagram.com/dauphinecreative.id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-dark transition-colors"><FaInstagram size={20} /></a>
-              <a href="https://www.google.com/maps/place/Dauphine+Creative/@-6.227685,106.845254,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69f43b3c9c9c9d:0x2e69f43b3c9c9c9d!8m2!3d-6.227685!4d106.845254" className="hover:text-dark transition-colors"><FaMapPin size={18} /></a>
+              <a href="https://maps.app.goo.gl/7Qan6Vdh42UuREyd8" className="hover:text-dark transition-colors"><FaMapPin size={18} /></a>
             </div>
           </div>
 

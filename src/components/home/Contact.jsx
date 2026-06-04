@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+import { supabase } from '../../lib/supabaseClient'; 
 
 const Contact = () => {
   const [isSending, setIsSending] = useState(false);
@@ -30,27 +32,47 @@ const Contact = () => {
     setIsSending(true);
     setStatusMessage({ type: '', text: '' });
 
-    const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-
-    const object = {
-        ...formData,
-        access_key: ACCESS_KEY,
-        subject: `New Inquiry from ${formData.name}`,
-        from_name: "Dauphine Creative Website"
-    };
-    
     try {
+      const { error: supabaseError } = await supabase
+        .from('inquiries')
+        .insert([
+          { name: formData.name, email: formData.email, message: formData.message }
+        ]);
+
+      if (supabaseError) {
+        console.error("Database tracking failed:", supabaseError.message);
+      }
+
+      const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
         },
-        body: JSON.stringify(object)
+        body: JSON.stringify({
+          ...formData,
+          access_key: ACCESS_KEY,
+          subject: `New Inquiry from ${formData.name}`,
+          from_name: "Dauphine Creative Website"
+        })
       });
       const result = await response.json();
 
       if (result.success) {
+        emailjs.send(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID, 
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
+          { 
+            name: formData.name,
+            time: new Date().toLocaleString('id-ID', { dateStyle: 'long', timeStyle: 'short' }),
+            message: formData.message,
+            to_email: formData.email, 
+            reply_to: "dauphinecreative@gmail.com" 
+          }, 
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        ).catch(err => console.error("Auto-reply background engine failed:", err));
+
         setStatusMessage({ type: 'success', text: 'Pesan terkirim! Kami akan segera menghubungi Anda.' });
         setFormData({ name: '', email: '', message: '' });
       } else {

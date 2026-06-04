@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/common/SEO';
+import imgProject1 from '../assets/project/project1.avif';
+import imgProject2 from '../assets/project/project2.avif';
 
 const ProjectList = () => {
   useEffect(() => window.scrollTo(0, 0), []);
@@ -17,11 +19,11 @@ const ProjectList = () => {
         "Improved business performance",
         "Reduced operational inefficiencies"
       ],
-      image: "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?q=80&w=2071&auto=format&fit=crop" 
+      image: imgProject1
     },
     {
       id: "02",
-      title: "Social Media Rebranding",
+      title: "Social Media Management",
       category: "Creative Strategy",
       year: "2026",
       desc: "Designing a new visual identity and content strategy for growing brands, enhancing awareness and organic engagement.",
@@ -30,7 +32,7 @@ const ProjectList = () => {
         "More consistent visual identity",
         "Organic follower growth"
       ],
-      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop" 
+      image: imgProject2
     }
   ];
 
@@ -83,11 +85,11 @@ const ProjectList = () => {
                 className="group border-t border-dark/10 pt-16"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
-                  <div className="w-full aspect-video overflow-hidden border border-dark/5 bg-white mb-12">
+                  <div className="w-full aspect-video overflow-hidden border border-dark/5 bg-white mb-12 flex items-center justify-center">
                     <img 
                       src={project.image} 
                       alt={project.title} 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out group-hover:scale-105" 
+                      className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out group-hover:scale-102" 
                     />
                   </div>
 

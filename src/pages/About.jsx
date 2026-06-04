@@ -40,7 +40,7 @@ const About = () => {
             <h1 className="text-5xl md:text-8xl font-medium text-dark tracking-tighter leading-[0.9] mb-12">
               Building Your <br /> <span className="text-dark/40">Digital Presence</span>
             </h1>
-            <p className="text-xl md:text-2xl text-dark/60 leading-relaxed max-w-2xl">
+            <p className="text-xl md:text-2xl text-dark/60 leading-relaxed max-w-2xl text-justify">
               "We aim to empower businesses by transforming their ideas into impactful digital products and creative solutions. With a focus on structured solutions, data-driven strategies, and transparent processes, we are committed to driving real growth for our clients in the digital landscape"
             </p>
           </div>

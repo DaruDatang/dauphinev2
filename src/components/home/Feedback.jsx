@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import emailjs from '@emailjs/browser';
-import { supabase } from '../../lib/supabaseClient'; 
+import { supabase } from '../../lib/supabaseClient';
 
-const ServiceContact = ({ serviceName }) => {
+const Feedback = () => {
   const [isSending, setIsSending] = useState(false);
   const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    message: ''
+    project: '',
+    rating: '5',
+    comment: ''
   });
 
   useEffect(() => {
@@ -31,58 +31,24 @@ const ServiceContact = ({ serviceName }) => {
     setIsSending(true);
     setStatusMessage({ type: '', text: '' });
 
-    const fullMessage = `[Layanan: ${serviceName}]\n${formData.message}`;
-
     try {
-      const { error: supabaseError } = await supabase
-        .from('inquiries')
+      const { error } = await supabase
+        .from('feedbacks')
         .insert([
-          { name: formData.name, email: formData.email, message: fullMessage }
+          {
+            name: formData.name,
+            project: formData.project,
+            rating: parseInt(formData.rating),
+            comment: formData.comment
+          }
         ]);
 
-      if (supabaseError) {
-        console.error("Database tracking failed:", supabaseError.message);
-      }
+      if (error) throw error;
 
-      const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: fullMessage,
-          access_key: ACCESS_KEY,
-          subject: `Inquiry Layanan ${serviceName} dari: ${formData.name}`,
-          from_name: "Dauphine Creative Website"
-        })
-      });
-      const result = await response.json();
-
-      if (result.success) {
-        emailjs.send(
-          import.meta.env.VITE_EMAILJS_SERVICE_ID, 
-          import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
-          { 
-            name: formData.name,
-            time: new Date().toLocaleString('id-ID', { dateStyle: 'long', timeStyle: 'short' }),
-            message: formData.message, 
-            to_email: formData.email, 
-            reply_to: "dauphinecreative@gmail.com" 
-          }, 
-          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-        ).catch(err => console.error("Auto-reply background engine failed:", err));
-
-        setStatusMessage({ type: 'success', text: 'Pesan terkirim! Kami akan segera menghubungi Anda.' });
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        throw new Error(result.message || "Submission failed");
-      }
-    } catch (error) {
-      setStatusMessage({ type: 'error', text: 'Gagal mengirim pesan. Silakan coba lagi nanti.' });
+      setStatusMessage({ type: 'success', text: 'Thank you! Your feedback has been recorded.' });
+      setFormData({ name: '', project: '', rating: '5', comment: '' });
+    } catch (err) {
+      setStatusMessage({ type: 'error', text: 'Failed to submit feedback. Please try again.' });
     } finally {
       setIsSending(false);
     }
@@ -91,15 +57,12 @@ const ServiceContact = ({ serviceName }) => {
   const inputClass = "w-full bg-transparent border-b border-dark/20 focus:border-dark outline-none py-4 text-dark transition-all text-lg placeholder:text-dark/20";
 
   return (
-    <section className="py-32 bg-[#ffffff] border-dark/10">
+    <section id="feedback" className="py-32 bg-white border-t border-dark/5">
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
-        
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           <div className="hidden md:block">
-            <span className="text-sm font-medium text-dark/40 uppercase tracking-tighter">
-              Service Inquiry
-            </span>
+            <span className="text-sm font-medium text-dark/40 uppercase tracking-tighter">Share Experience</span>
           </div>
 
           <div className="md:col-start-2 md:col-span-3">
@@ -109,53 +72,70 @@ const ServiceContact = ({ serviceName }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-6xl font-medium text-dark tracking-tight leading-tight mb-16">
-                Interested in our <br />
-                <span className="text-dark/40">{serviceName} services?</span>
+              <h2 className="text-5xl md:text-7xl font-medium text-dark tracking-tight leading-tight mb-16">
+                Leave your <br />
+                <span className="text-dark/40">feedback here.</span>
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-dark/40 mb-2">Full name</label>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-dark/40 mb-2">Your Name</label>
                     <input 
                       type="text" 
-                      name="name" 
+                      name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      required 
+                      required
                       className={inputClass}
-                      placeholder="Enter your name" 
+                      placeholder="Enter your name"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-dark/40 mb-2">Email Address</label>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-dark/40 mb-2">Project / Company</label>
                     <input 
-                      type="email" 
-                      name="email" 
-                      value={formData.email}
+                      type="text" 
+                      name="project"
+                      value={formData.project}
                       onChange={handleChange}
-                      required 
+                      required
                       className={inputClass}
-                      placeholder="Enter your email" 
+                      placeholder="e.g. CNC Bandung"
                     />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-dark/40 mb-2">Rating Score</label>
+                    <select
+                      name="rating"
+                      value={formData.rating}
+                      onChange={handleChange}
+                      className={`${inputClass} bg-transparent cursor-pointer`}
+                    >
+                      <option value="5">Excellent (5/5)</option>
+                      <option value="4">Very Good (4/5)</option>
+                      <option value="3">Good (3/5)</option>
+                      <option value="2">Average (2/5)</option>
+                      <option value="1">Poor (1/5)</option>
+                    </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-dark/40 mb-2">Tell us about your project</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-dark/40 mb-2">Review Comment</label>
                   <textarea 
-                    name="message" 
-                    value={formData.message}
+                    name="comment"
+                    value={formData.comment}
                     onChange={handleChange}
-                    rows="4" 
+                    rows="4"
                     required
                     className={`${inputClass} resize-none`}
-                    placeholder="Briefly describe what you need"
+                    placeholder="Describe your experience working with Dauphiné Creative"
                   ></textarea>
                 </div>
 
-                <div className="flex flex-col gap-6 pt-4">
+                <div className="flex flex-col gap-6">
                   <AnimatePresence>
                     {statusMessage.text && (
                       <motion.div
@@ -172,17 +152,17 @@ const ServiceContact = ({ serviceName }) => {
                   </AnimatePresence>
 
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-                    <p className="text-xs text-dark/40 max-w-sm uppercase tracking-tighter leading-relaxed">
-                      By sending this message, you agree to our privacy policy regarding the storage of contact data.
+                    <p className="text-xs text-dark/40 max-w-sm leading-relaxed uppercase tracking-tighter">
+                      Your feedback will be reviewed internally and processed into our studio dashboard repository.
                     </p>
                     
                     <button 
-                      type="submit" 
+                      type="submit"
                       disabled={isSending}
                       className="group relative flex items-center gap-4 text-xl font-bold uppercase tracking-tighter transition-all"
                     >
                       <span className={`${isSending ? 'opacity-50' : 'group-hover:pr-4'} transition-all duration-300`}>
-                        {isSending ? 'Sending...' : 'Send Inquiry'}
+                        {isSending ? 'Submitting...' : 'Submit Feedback'}
                       </span>
                       {!isSending && <span className="text-3xl">→</span>}
                       <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-dark scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
@@ -192,11 +172,10 @@ const ServiceContact = ({ serviceName }) => {
               </form>
             </motion.div>
           </div>
-
         </div>
       </div>
     </section>
   );
 };
 
-export default ServiceContact;
+export default Feedback;
