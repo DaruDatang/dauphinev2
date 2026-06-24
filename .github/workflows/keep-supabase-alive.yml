@@ -1,0 +1,16 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '0 0 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Ping Request to Supabase API
+        run: |
+          curl -X GET "https://khnlgyzovgpsxrqabgkw.supabase.co/rest/v1/feedbacks?select=id&limit=1" \
+            -H "apikey: ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnaWJnam5yaGNpeXhxZG95eGZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3ODkwMjAsImV4cCI6MjA4ODM2NTAyMH0.be5LR4tH7j86-WfX7fqlpWRx5Br5sHjNObUuDejJAu4 }}" \
+            -H "Authorization: Bearer ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnaWJnam5yaGNpeXhxZG95eGZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3ODkwMjAsImV4cCI6MjA4ODM2NTAyMH0.be5LR4tH7j86-WfX7fqlpWRx5Br5sHjNObUuDejJAu4 }}"
