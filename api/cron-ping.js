@@ -1,12 +1,22 @@
 import { createClient } from '@supabase/supabase-js';
 
 export default async function handler(request, response) {
-  const supabaseUrl = 'https://pgibgjnrhciyxqdoyxfh.supabase.co';
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnaWJnam5yaGNpeXhxZG95eGZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3ODkwMjAsImV4cCI6MjA4ODM2NTAyMH0.be5LR4tH7j86-WfX7fqlpWRx5Br5sHjNObUuDejJAu4';
+  const rawUrl = process.env.VITE_SUPABASE_URL;
+  const rawKey = process.env.VITE_SUPABASE_ANON_KEY;
 
-  if (!supabaseUrl || !supabaseAnonKey) {
-    return response.status(500).json({ error: 'Missing environment variables in Vercel' });
-  }
+  const validateUrl = (url) => {
+    if (!url || typeof url !== 'string') return false;
+    const cleanedUrl = url.trim();
+    return cleanedUrl.startsWith('https://') || cleanedUrl.startsWith('http://');
+  };
+
+  const supabaseUrl = validateUrl(rawUrl)
+    ? rawUrl.trim()
+    : 'https://njjhdpxdjyypijuoznfw.supabase.co';
+
+  const supabaseAnonKey = rawKey && rawKey !== 'undefined' && rawKey !== 'null'
+    ? rawKey.trim()
+    : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qamhkcHhkanl5cGlqdW96bmZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzMzA5NDQsImV4cCI6MjA5NzkwNjk0NH0.qhRDiCty2ZuAjVHl-0xt9aBOVWjXGdEfFwYCVOkE6e4';
 
   try {
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
