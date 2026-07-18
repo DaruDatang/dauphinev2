@@ -16,20 +16,24 @@ const WebsitePerformanceTab = () => {
       setError(null);
       try {
         const baseUrl = import.meta.env.VITE_ANALYTICS_API_URL || '';
-        const response = await fetch(`${baseUrl}/api/analytics?range=${timeframe}`);
+        const targetUrl = `${baseUrl}/api/analytics?range=${timeframe}`;
+        
+        console.log("Mencoba fetch data ke:", targetUrl);
+        const response = await fetch(targetUrl);
         
         if (!response.ok) {
-          throw new Error('API Error');
+          throw new Error(`Server merespons dengan status: ${response.status}`);
         }
         
         const contentType = response.headers.get("content-type");
         if (!contentType || !contentType.includes("application/json")) {
-          throw new Error('Invalid Content Type');
+          throw new Error("Server tidak mengembalikan JSON, melainkan HTML/Teks biasa.");
         }
 
         const data = await response.json();
         setAnalyticsData(data);
       } catch (err) {
+        console.error("🚨 KATA KUNCI ERROR ANALYTICS:", err.message);
         setAnalyticsData(null);
       } finally {
         setIsLoading(false);
@@ -60,17 +64,6 @@ const WebsitePerformanceTab = () => {
           <div className="lg:col-span-2 bg-[#fafafa] p-6 rounded-2xl border border-dark/5 h-80 animate-pulse" />
           <div className="bg-[#fafafa] p-6 rounded-2xl border border-dark/5 h-80 animate-pulse" />
         </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="text-xs font-bold uppercase tracking-widest text-red-500 py-20 text-center border border-dashed border-red-200 rounded-2xl bg-red-50/20">
-        <p>Error: {error}</p>
-        <p className="text-[10px] mt-2 text-red-400/80 normal-case tracking-normal font-medium">
-          Pastikan backend API berjalan dan VITE_ANALYTICS_API_URL sudah dikonfigurasi.
-        </p>
       </div>
     );
   }
