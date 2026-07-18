@@ -1,5 +1,8 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/common/SEO';
+import { useScrollTracking } from '../hooks/useScrollTracking';
+import { trackEvent } from '../lib/analytics';
 
 import imgDaru from '../assets/about/daru.svg'; 
 import imgIsmail from '../assets/about/ismail.svg';
@@ -7,6 +10,12 @@ import imgLazuardi from '../assets/about/lazuardi.svg';
 import imgMatthew from '../assets/about/matthew.svg';
 
 const About = () => {
+  useScrollTracking('About Us');
+
+  const handleTeamMemberClick = (name) => {
+    trackEvent('click_team_member', 'Engagement', name);
+  };
+
   const missions = [
     { title: "Becoming a trusted creative & IT partner in building a strong and sustainable digital presence.", desc: "Developing websites and digital strategies that align with your brand identity by combining creativity and technology for maximum results." },
     { title: "Optimizing every business decision through measurable and meaningful data.", desc: "Analyzing and processing data into actionable insights to enhance business effectiveness and real-world outcomes." },
@@ -75,7 +84,11 @@ const About = () => {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               {team.map((member, index) => (
-                <div key={index} className="group">
+                <div 
+                  key={index} 
+                  className="group cursor-pointer"
+                  onClick={() => handleTeamMemberClick(member.name)}
+                >
                   <div className="aspect-[3/4] overflow-hidden bg-white mb-6 border border-dark/5">
                     <img 
                       src={member.image} 

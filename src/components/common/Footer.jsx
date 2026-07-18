@@ -1,7 +1,13 @@
+import React from 'react';
 import { FaInstagram, FaTiktok, FaMapPin, FaWhatsapp } from 'react-icons/fa';
+import { trackEvent } from '../../lib/analytics';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const handleFooterClick = (elementName) => {
+    trackEvent('click_footer_element', 'Engagement', elementName);
+  };
 
   return (
     <footer className="bg-[#ffffff] pt-24 pb-0 overflow-hidden border-dark/10 relative">
@@ -21,8 +27,24 @@ const Footer = () => {
               Follow & Locate Us
             </span>
             <div className="flex gap-4 text-dark/40">
-              <a href="https://www.instagram.com/dauphinecreative.id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-dark transition-colors"><FaInstagram size={20} /></a>
-              <a href="https://maps.app.goo.gl/7Qan6Vdh42UuREyd8" className="hover:text-dark transition-colors"><FaMapPin size={18} /></a>
+              <a 
+                href="https://www.instagram.com/dauphinecreative.id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => handleFooterClick('Instagram')}
+                className="hover:text-dark transition-colors"
+              >
+                <FaInstagram size={20} />
+              </a>
+              <a 
+                href="https://maps.app.goo.gl/7Qan6Vdh42UuREyd8" 
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => handleFooterClick('Google Maps Location')}
+                className="hover:text-dark transition-colors"
+              >
+                <FaMapPin size={18} />
+              </a>
             </div>
           </div>
 
@@ -30,7 +52,11 @@ const Footer = () => {
             <span className="text-sm font-bold text-dark uppercase tracking-tighter">
               Interested to work with us?
             </span>
-            <a href="mailto:dauphinecreative@gmail.com" className="text-sm font-medium text-dark/40 hover:text-dark transition-colors uppercase tracking-tighter">
+            <a 
+              href="mailto:dauphinecreative@gmail.com" 
+              onClick={() => handleFooterClick('Email Corporate')}
+              className="text-sm font-medium text-dark/40 hover:text-dark transition-colors uppercase tracking-tighter"
+            >
               dauphinecreative@gmail.com
             </a>
           </div>
@@ -52,6 +78,7 @@ const Footer = () => {
         href="https://wa.me/628112128038" 
         target="_blank" 
         rel="noopener noreferrer"
+        onClick={() => handleFooterClick('Floating WhatsApp CTA')}
         className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-dark text-white rounded-full flex items-center justify-center hover:bg-dark/80 hover:scale-110 transition-all duration-300 shadow-xl"
       >
         <FaWhatsapp size={28} />

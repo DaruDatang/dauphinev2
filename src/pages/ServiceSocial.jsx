@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/common/SEO';
 import SocialPlatformCarousel from '../components/services/SocialPlatformCarousel';
 import ServiceContact from '../components/services/ServiceContact';
-import { AnimatePresence } from 'framer-motion';
+import { useScrollTracking } from '../hooks/useScrollTracking';
+import { trackEvent } from '../lib/analytics';
 
 const pageVariants = {
   initial: {
@@ -42,7 +43,15 @@ const PageWrapper = ({ children }) => {
 };
 
 const ServiceSocial = () => {
-  useEffect(() => window.scrollTo(0, 0), []);
+  useScrollTracking('Social Media Management');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleOfferClick = (title) => {
+    trackEvent('click_social_offer', 'Engagement', title);
+  };
 
   const offers = [
     { 
@@ -116,7 +125,11 @@ const ServiceSocial = () => {
           
           <div className="flex flex-col">
             {offers.map((offer, idx) => (
-              <div key={idx} className="group grid grid-cols-1 md:grid-cols-4 gap-4 py-16 border-dark/10 hover:bg-dark/[0.02] transition-all duration-500">
+              <div 
+                key={idx} 
+                onClick={() => handleOfferClick(offer.title)}
+                className="group grid grid-cols-1 md:grid-cols-4 gap-4 py-16 border-t border-dark/10 hover:bg-dark/[0.02] transition-all duration-500 cursor-pointer"
+              >
                 <div className="hidden md:block text-sm font-bold text-dark/30">({offer.id})</div>
                 <div className="md:col-span-2">
                   <h3 className="text-3xl md:text-5xl font-medium tracking-tight mb-4 group-hover:translate-x-2 transition-transform duration-500">
@@ -131,7 +144,7 @@ const ServiceSocial = () => {
                 </div>
               </div>
             ))}
-            <div className=" border-dark/10"></div>
+            <div className="border-t border-dark/10"></div>
           </div>
         </div>
       </section>

@@ -1,10 +1,14 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { supabase } from '../lib/supabaseClient'; 
 import SEO from '../components/common/SEO';
+import { useScrollTracking } from '../hooks/useScrollTracking';
+import { trackEvent } from '../lib/analytics';
 
 const Contact = () => {
+  useScrollTracking('Contact');
+
   const [isSending, setIsSending] = useState(false);
   const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -60,12 +64,14 @@ const Contact = () => {
           import.meta.env.VITE_EMAILJS_PUBLIC_KEY
         ).catch(err => console.error("Auto-reply background engine failed:", err));
 
+        trackEvent('submit_inquiry_success', 'Engagement', formData.name);
         setStatusMessage({ type: 'success', text: 'Success! We will be in touch soon.' });
         setFormData({ name: '', email: '', message: '' });
       } else { 
         throw new Error(); 
       }
     } catch (error) {
+      trackEvent('submit_inquiry_failed', 'Engagement', formData.name);
       setStatusMessage({ type: 'error', text: 'Error sending message. Please try again.' });
     } finally { 
       setIsSending(false); 
@@ -97,7 +103,7 @@ const Contact = () => {
 
             <div className="grid grid-cols-2 gap-8 pt-6 border-t border-dark/5">
               <div className="space-y-2">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-dark/30">Email</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-dark/3微">Email</p>
                 <a href="mailto:dauphinecreative@gmail.com" className="text-sm font-medium hover:text-dark/50 transition-colors">dauphinecreative@gmail.com</a>
               </div>
               <div className="space-y-2">

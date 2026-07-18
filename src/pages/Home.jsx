@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/common/SEO';
 import Hero from '../components/home/Hero';
@@ -5,6 +6,8 @@ import ServicesList from '../components/home/ServicesList';
 import FAQ from '../components/home/FAQ';
 import Contact from '../components/home/Contact';
 import Feedback from '../components/home/Feedback';
+import DigitalPetalsShader from '../components/ui/digital-petals-shader';
+import { useScrollTracking } from '../hooks/useScrollTracking';
 
 const pageVariants = {
   initial: {
@@ -30,6 +33,8 @@ const pageVariants = {
 };
 
 const Home = () => {
+  useScrollTracking('Home');
+
   return (
     <motion.div
       variants={pageVariants}
@@ -39,10 +44,17 @@ const Home = () => {
       className="overflow-hidden bg-[#ffffff]"
     >
       <SEO 
-        title="Dauphiné Creative — Digital Agency" 
+        title="Welcome to Dauphiné Creative!" 
         description="Dauphine Creative membantu mengubah ide menjadi produk digital yang andal dan berdampak nyata." 
       />
-      <Hero />
+      
+      <div className="relative w-full min-h-screen bg-transparent">
+        <DigitalPetalsShader />
+        <div className="relative z-10 pointer-events-auto">
+          <Hero />
+        </div>
+      </div>
+
       <ServicesList />
       <FAQ />
       <Contact />

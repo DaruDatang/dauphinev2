@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import Navbar from './components/common/Navbar';
@@ -11,8 +11,11 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ServiceIT from './pages/ServiceIT';
 import ServiceSocial from './pages/ServiceSocial';
+import ProjectCalculator from './pages/ProjectCalculator';
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminLogin from './pages/admin/Login';
+
+import { initGA, trackPageView } from './lib/analytics';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -67,6 +70,10 @@ const AnimatedRoutes = () => {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location.pathname]);
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -79,10 +86,13 @@ const AnimatedRoutes = () => {
           <Route path="/projects" element={<ProjectList />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/service/it-solution" element={<ServiceIT />} />
-          <Route path="/service/social-media" element={<ServiceSocial />} />
+          <Route path="/services/it-solution" element={<ServiceIT />} />
+          <Route path="/services/social-media" element={<ServiceSocial />} />
+          <Route path="/calculator" element={<ProjectCalculator />} />
           <Route path="/dauphine-admin" element={<AdminDashboard />} />
           <Route path="/dauphine-admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<Navigate to="/dauphine-admin" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AnimatePresence>
     </>
@@ -91,16 +101,18 @@ const AnimatedRoutes = () => {
 
 const AppContent = () => {
   const location = useLocation();
-  const isAdminPage = location.pathname.startsWith('/dauphine-admin');
+  const isAdminPage = location.pathname.startsWith('/dauphine-admin') || location.pathname.startsWith('/admin');
+
+  useEffect(() => {
+    initGA();
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {!isAdminPage && <Navbar />}
-      
       <main className="flex-grow">
         <AnimatedRoutes />
       </main>
-      
       {!isAdminPage && <Footer />}
     </div>
   );

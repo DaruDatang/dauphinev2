@@ -1,11 +1,22 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/common/SEO';
+import { useScrollTracking } from '../hooks/useScrollTracking';
+import { trackEvent } from '../lib/analytics';
+
 import imgProject1 from '../assets/project/project1.avif';
 import imgProject2 from '../assets/project/project2.avif';
 
 const ProjectList = () => {
-  useEffect(() => window.scrollTo(0, 0), []);
+  useScrollTracking('Project List');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleProjectClick = (projectTitle) => {
+    trackEvent('view_project_detail', 'Engagement', projectTitle);
+  };
 
   const projects = [
     {
@@ -53,7 +64,7 @@ const ProjectList = () => {
 
   return (
     <div className="bg-[#ffffff] min-h-screen pt-48 pb-32">
-      <SEO title="Project Archive - Dauphiné Creative" />
+      <SEO title="Projects - Dauphiné Creative" />
 
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
         
@@ -82,7 +93,8 @@ const ProjectList = () => {
               <motion.div 
                 key={index} 
                 variants={itemVariants}
-                className="group border-t border-dark/10 pt-16"
+                className="group border-t border-dark/10 pt-16 cursor-pointer"
+                onClick={() => handleProjectClick(project.title)}
               >
                 <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
                   <div className="w-full aspect-video overflow-hidden border border-dark/5 bg-white mb-12 flex items-center justify-center">
